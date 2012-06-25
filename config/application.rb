@@ -15,6 +15,8 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+load(File.expand_path('../heroku_env.rb', __FILE__))
+
 module Seshly
   class Application < Rails::Application
 
