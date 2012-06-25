@@ -1,5 +1,5 @@
-= form_for(@user) do |f|
-  = f.label :email
-  = f.text_field :email
-  %br/
-  = f.submit "Sign in"
+%h1 Add profile information
+
+= form_for(@user, :html => {:class => 'form-search', :style => 'margin-top:1.5em;'}) do |f|
+  = f.text_field :email, :placeholder => "Email"
+  = f.submit "Sign in", :class => 'btn btn-primary'

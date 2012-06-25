@@ -9,13 +9,23 @@ class LocationSearchController < ApplicationController
       end
     
       if params[:location] && params[:code]
-        current_user.foursq_token = foursquare.access_token(params["code"], "http://sesh-ly.herokuapp.com/location_search/")
-        foursquare = Foursquare::Base.new(current_user.foursq_token)
-        @fsq_locs = foursquare.venues.search(:near => "Helsinki, Finland", :query => "#{params[:location]}") # Returns all resulting groups
-        @location = Location.where(name: "#{params[:location]}")
+        
+        if current_user.foursq_token.length > 0
+          access_token = current_user.foursq_token
+          
+          foursquare = Foursquare::Base.new(access_token)
+          @fsq_locs = foursquare.venues.search(:near => "Helsinki, Finland", :query => "#{params[:location]}") # Returns all resulting groups
+          @location = Location.where(name: "#{params[:location]}")
+          
+        else 
+          current_user.foursq_token = foursquare.access_token(params["code"], "http://sesh-ly.herokuapp.com/location_search/")
+        end
       end
     else
-      redirect_to '/signin'
+      redirect_to '/signin', :notice => 'Please sign in first!'
+    end
+    
+    
   end
   
 end
