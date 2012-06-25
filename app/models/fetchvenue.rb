@@ -3,7 +3,7 @@ class Fetchvenue
   
   def self.with_id(venue_id, access_token)
     foursquare = Foursquare::Base.new(access_token)
-    venue = foursquare.venue :vid => venue_id
+    venue = foursquare.venues.find(venue_id)
      
     return venue
   end
