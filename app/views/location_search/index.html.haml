@@ -22,4 +22,5 @@
   - if @fsq_locs.length > 0
     %ul
     - @fsq_locs.each do |venue|
-      %li #{venue.name}
+      %li 
+        =link_to venue.to_json
