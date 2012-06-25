@@ -1,12 +1,20 @@
+%img{:src => "#{@user.image if @user.image} "}
+
 %p
   %b Nickname: 
-  #{@user.nickname if @user.nickname}
+  = link_to @user.nickname, 'http://www.twitter.com/'+@user.nickname
 %p
-  %b User: 
-  #{@user.name}
-%p
-  %b Email: 
-  #{@user.email if @user.email}
+  %b Description: 
+  #{@user.description if @user.description}
+
+- if correct_user?
+  %p
+    %b User: 
+    #{@user.name}
+  %p
+    %b Email: 
+    #{@user.email if @user.email}
+  
 
 %a.btn.btn-primary{:href => edit_user_path}
   Edit your information

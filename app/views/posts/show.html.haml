@@ -1,14 +1,14 @@
 %p#notice= notice
 
 %p
-  %b Description:
-  = @post.description
-%p
-  %b Short url:
-  = @post.short_url
-%p
-  %b Author:
+  %img{:src => "#{@post.user.image if @post.user.image} "}
   = link_to @post.user.nickname, @post.user
+  on #{@post.created_at.to_s(:long)}
+
+%p
+  %blockquote.well
+    = @post.description
+
 
 = link_to 'Edit', edit_post_path(@post)
 \|

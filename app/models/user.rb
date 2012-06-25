@@ -6,6 +6,8 @@ class User
   field :nickname, :type => String
   field :name, :type => String
   field :email, :type => String
+  field :image, :type => String
+  field :description, :type => String
   field :foursq_token, :type => String
   attr_accessible :provider, :uid, :name, :email, :nickname
   
@@ -17,7 +19,10 @@ class User
       user.uid = auth['uid']
       if auth['info']
          user.name = auth['info']['name'] || ""
+         user.nickname = auth['info']['nickname'] || ""
          user.email = auth['info']['email'] || ""
+         user.image = auth['info']['image'] || ""
+         user.description = auth['info']['description'] || ""
       end
     end
   end

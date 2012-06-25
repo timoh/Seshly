@@ -9,6 +9,6 @@ class Post
   
   validates_associated :user
   validates_uniqueness_of :short_url
-  validates_presence_of [:description, :short_url, :user]
+  validates_presence_of [:description, :user]
   
 end

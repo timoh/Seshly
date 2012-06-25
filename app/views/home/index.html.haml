@@ -1,13 +1,23 @@
-%h2 Posts
+%h2 Most recent posts
 - if @posts.length > 0
-  %ul
-  - @posts.each do |post|
-    %li 
-      &quot;
-      =link_to post.description, post
-      &quot; (
-      = link_to post.user.nickname, post.user
-      , #{post.created_at.to_s(:long)} )
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Author
+        %th Post
+        %th
+    %tbody
+      - @posts.each do |post|
+        %tr
+          %td
+            %img{:src => "#{post.user.image if post.user.image} "}
+            = link_to post.user.nickname, post.user
+            
+          %td 
+            %blockquote
+              #{post.description}
+          %td 
+            =link_to 'See more..', post
 - else
   %p No posts yet!
   %a.btn.btn-primary{:href => "#{new_post_path}"}

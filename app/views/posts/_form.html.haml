@@ -1,9 +1,4 @@
 = simple_form_for(@post) do |f|
   = f.error_notification
-
-  .form-inputs
-    = f.input :description
-    = f.input :short_url
-
-  .form-actions
-    = f.button :submit
+  = f.input :description, :placeholder => "your message here!", :label => false, :input_html => {:class => 'input-large'}
+  = f.button :submit, :class => "btn btn-primary"
