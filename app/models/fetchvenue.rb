@@ -2,15 +2,15 @@ class Fetchvenue
   
   
   def self.with_id(venue_id, access_token)
-    
+    foursquare = Foursquare::Base.new(access_token)
+    venue = foursquare.venue :vid => venue_id
      
-    
+    return venue
   end
   
   def self.with_keyword(keyword, access_token)
     foursquare = Foursquare::Base.new(access_token)
-    output = foursquare.venues.search(:ll => '44.3,37.2', :near => "Helsinki, Finland", :query => "#{keyword}", :oauth_token => access_token) # Returns all resulting groups
-    
+    output = foursquare.venues.search(:ll => '44.3,37.2', :near => "Helsinki, Finland", :query => "#{keyword}", :oauth_token => access_token)
     return output['places']
   end
   
