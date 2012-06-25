@@ -2,9 +2,17 @@
 - if @posts.length > 0
   %ul
   - @posts.each do |post|
-    %li post.description
-    %li post.user.name
+    %li 
+      &quot;
+      =link_to post.description, post
+      &quot; (
+      = link_to post.user.nickname, post.user
+      , #{post.created_at.to_s(:long)} )
+- else
+  %p No posts yet!
+  %a.btn.btn-primary{:href => "#{new_post_path}"}
+    Create a new post!
 
 %h3 Users in the system
 - @users.each do |user|
-  %p User: #{link_to user.name, user}
+  %p User: #{link_to user.nickname, user}

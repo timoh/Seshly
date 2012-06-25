@@ -1,5 +1,6 @@
 class Location
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :name, :type => String
   field :foursq_id, :type => String
   field :street_address, :type => String

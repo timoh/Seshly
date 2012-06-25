@@ -1,4 +1,12 @@
 %p
-  User: #{@user.name}
+  %b Nickname: 
+  #{@user.nickname if @user.nickname}
 %p
-  Email: #{@user.email if @user.email}
+  %b User: 
+  #{@user.name}
+%p
+  %b Email: 
+  #{@user.email if @user.email}
+
+%a.btn.btn-primary{:href => edit_user_path}
+  Edit your information

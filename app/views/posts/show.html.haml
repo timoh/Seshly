@@ -6,6 +6,9 @@
 %p
   %b Short url:
   = @post.short_url
+%p
+  %b Author:
+  = link_to @post.user.nickname, @post.user
 
 = link_to 'Edit', edit_post_path(@post)
 \|

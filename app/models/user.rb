@@ -1,11 +1,13 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :provider, :type => String
   field :uid, :type => String
+  field :nickname, :type => String
   field :name, :type => String
   field :email, :type => String
   field :foursq_token, :type => String
-  attr_accessible :provider, :uid, :name, :email
+  attr_accessible :provider, :uid, :name, :email, :nickname
   
   has_many :posts
 

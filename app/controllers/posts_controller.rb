@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /posts
   # GET /posts.json
   def index
@@ -41,6 +42,10 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
+    raise 'NO CURRENT USER SET!' if current_user == nil
+    raise 'CURRENT USER NAME NOT VALID!' if current_user.name.length < 3
+    
+    @post.user = current_user
 
     respond_to do |format|
       if @post.save
