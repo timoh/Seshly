@@ -15,7 +15,10 @@ class LocationSearchController < ApplicationController
           raise 'access_token is nil!' if access_token == nil
           
           foursquare = Foursquare::Base.new(access_token)
-          @fsq_locs = foursquare.venues.search(:ll => '44.3,37.2', :near => "Helsinki, Finland", :query => "#{params[:location]}", :oauth_token => access_token) # Returns all resulting groups
+          output = foursquare.venues.search(:ll => '44.3,37.2', :near => "Helsinki, Finland", :query => "#{params[:location]}", :oauth_token => access_token) # Returns all resulting groups
+          
+          @fsq_locs = output['places']
+          
           @location = Location.where(name: "#{params[:location]}")
       end
       
