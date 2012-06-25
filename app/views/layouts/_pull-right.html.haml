@@ -1,0 +1,14 @@
+%a.btn.dropdown-toggle{"data-toggle" => 'dropdown', :href => '#'}
+  %i.icon-user
+  - if current_user
+    #{current_user.name}
+  - else
+    Login / Sign up
+  %span.caret
+%ul.dropdown-menu
+  - if current_user
+    %li
+      = link_to('Logout', signout_path)
+  - else
+    %li
+      = link_to('Login with Twitter', signin_path)

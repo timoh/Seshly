@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /locations
   # GET /locations.json
   def index
@@ -24,6 +25,11 @@ class LocationsController < ApplicationController
   # GET /locations/new
   # GET /locations/new.json
   def new
+    @venue_id = params[:fsq_venue_id]
+    
+    
+    
+    
     @location = Location.new
 
     respond_to do |format|

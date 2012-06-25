@@ -23,4 +23,4 @@
     %ul
     - @fsq_locs.each do |venue|
       %li 
-        =link_to venue.to_json
+        =link_to venue.name, '/locations/new/?fsq_venue_id=#{venue.id}'
