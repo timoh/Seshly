@@ -2,7 +2,7 @@ class LocationSearchController < ApplicationController
   
   def index
     if current_user 
-      foursquare = Foursquare::Base.new("MWLS2YVYIYJ3DN4JTXGU0IKRF0PHQB3DZIC1JBILWDIB2LLU", "5JQHJJGE3CDJ2ZXDDFG0WWWF0TUZNC2BYHY3KMLXDY2X5PWE")
+      foursquare = Foursquare::Base.new(ENV['FOURSQUARE_KEY'], ENV['FOURSQUARE_SECRET'])
     
       if params[:location] && !params[:code]
         redirect_to foursquare.authorize_url("http://sesh-ly.herokuapp.com/location_search/")
