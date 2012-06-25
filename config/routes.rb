@@ -7,7 +7,7 @@ Seshly::Application.routes.draw do
   
   match '/location_search' => "location_search#index"
   
-  match '/auth/twitter/callback' => 'sessions#create'
+  match '/auth/:provider/callback' => 'sessions#create'
   match '/signin' => 'sessions#new', :as => :signin
   match '/signout' => 'sessions#destroy', :as => :signout
   match '/auth/failure' => 'sessions#failure'
