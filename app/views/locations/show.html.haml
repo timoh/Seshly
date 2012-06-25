@@ -2,10 +2,7 @@
 
 %p
   %b Name:
-  = @location.name
-%p
-  %b foursq:
-  = @location.foursq_id
+  = link_to @location.name, @location.url_to_fsq
 %p
   %b Street address:
   = @location.street_address
