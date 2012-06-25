@@ -1,6 +1,8 @@
 Seshly::Application.routes.draw do
   resources :posts
   resources :locations
+  
+  match '/location_search' => "location_search#index"
 
   root :to => "home#index"
   resources :users

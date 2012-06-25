@@ -9,6 +9,9 @@ end
 
 gem "therubyracer", :group => :assets, :platform => :ruby
 
+gem 'foursquare'
+gem 'quimby'
+
 gem 'jquery-rails'
 gem "haml", ">= 3.1.6"
 gem "bson_ext", ">= 1.6.4"
@@ -17,6 +20,7 @@ gem "omniauth", ">= 1.1.0"
 gem "omniauth-twitter"
 gem "bootstrap-sass", ">= 2.0.3"
 gem "simple_form"
+gem "country_select"
 gem "will_paginate_mongoid"
 
 gem "rspec-rails", ">= 2.10.1", :group => [:development, :test]

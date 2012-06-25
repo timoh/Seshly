@@ -1,0 +1,2 @@
+module LocationSearchHelper
+end

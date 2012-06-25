@@ -1,0 +1,18 @@
+%h1 Location Search
+
+%form.form-search{:style => 'margin-top: 1.5em;'}
+  %input.input-medium.search-query{ :name => 'location'}
+  %button.btn.btn-primary Submit
+- if params[:location]
+  %hr
+  %p 
+    %b Results:
+  - if @location.length > 0 
+    %ul
+    - @location.each do |location|
+      %li
+        =link_to location.name , location
+        - if location.city.length > 0
+          \- #{location.postal_code}, #{location.city} 
+  - else 
+    %p No results!
