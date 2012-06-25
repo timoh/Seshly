@@ -16,7 +16,7 @@ gem 'jquery-rails'
 gem "haml", ">= 3.1.6"
 gem "bson_ext", ">= 1.6.4"
 gem "mongoid", ">= 2.4.11"
-gem 'omniauth', :github => 'intridea/omniauth'
+gem "omniauth", ">= 1.1.0"
 gem "omniauth-twitter"
 gem "bootstrap-sass", ">= 2.0.3"
 gem "simple_form"
