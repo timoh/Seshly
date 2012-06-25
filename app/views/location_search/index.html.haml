@@ -22,4 +22,6 @@
   - if @fsq_locs.length > 0
     %ul
     - @fsq_locs.each do |venue|
-      %li venue.name
+      %li #{venue.name}, 
+        = venue.location.address if venue.location.address
+        = venue.location.city if venue.location.city
