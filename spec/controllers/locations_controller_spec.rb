@@ -32,14 +32,38 @@ describe LocationsController do
   # LocationsController. Be sure to keep this updated too.
   def valid_session
     {}
+    user = Factory(:user)
+    session[:user_id] = user.id
+  end
+  
+  before do
+    OmniAuth.config.mock_auth[:twitter] = {
+      'uid' => '123545'
+    }
   end
 
-  describe "GET index" do
-    xit "assigns all locations as @locations" do
-      location = Location.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:locations).should eq([location])
+  describe "GET 'index'" do
+    it "returns http success" do
+      valid_session
+      get 'index'
+      response.should be_success
     end
   end
+  
+  describe "unauthenticated access" do
+    it "should say you don't have rights" do
+      valid_session
+      visit locations_path
+      page.should have_content('sign in')
+    end
+  end
+  
+  describe "once correctly signed in" # do
+   #    it "should include locations" do
+   #      valid_session
+   #      visit locations_path
+   #      page.should have_content('locations')
+   #    end 
+   # end
 
 end

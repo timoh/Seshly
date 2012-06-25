@@ -1,6 +1,7 @@
-require 'rbconfig'
 source 'https://rubygems.org'
+
 gem 'rails', '3.2.6'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -24,18 +25,17 @@ gem "simple_form"
 gem "country_select"
 gem "will_paginate_mongoid"
 
-gem "rspec-rails", ">= 2.10.1", :group => [:development, :test]
-gem "factory_girl_rails", ">= 3.3.0", :group => [:development, :test]
-
-group :test do
+group :development, :test do
+  gem "rspec-rails"
+  gem "mongoid-rspec"
+  gem "capybara"
+  gem "launchy"
+  gem "database_cleaner"
+  gem "factory_girl_rails"
   gem "cucumber-rails", ">= 1.3.0", :require => false
-  gem "database_cleaner", ">= 0.8.0"
-  gem "mongoid-rspec", ">= 1.4.4"
-  gem "capybara", ">= 1.1.2"
-  gem "launchy", ">= 2.1.0"
   gem "email_spec", ">= 1.2.1"
   gem "machinist"
-end                            
+end                        
 
 group :development do
   gem 'rb-fsevent'

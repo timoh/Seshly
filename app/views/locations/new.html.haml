@@ -6,17 +6,17 @@
   .form-inputs
     = f.input :description
   
-    = f.hidden :name, :input_html => { :value => "#{@venue.name}" }
-    = f.hidden :foursq_id, :input_html => { :value => "#{@venue.id}" }
-    = f.hidden :url_to_fsq, :input_html => { :value => "#{@venue.canonicalUrl}" }
-    = f.hidden :street_address, :input_html => { :value => "#{@venue.location.name}" }
-    = f.hidden :cross_street, :input_html => { :value => "#{@venue.location.crossStreet}" }
-    = f.hidden :city, :input_html => { :value => "#{@venue.location.city}" }
-    = f.hidden :state, :input_html => { :value => "#{@venue.location.state}" }
-    = f.hidden :postal_code, :input_html => { :value => "#{@venue.location.postalCode}" }
-    = f.hidden :country, :input_html => { :value => "#{@venue.location.country}" }
-    = f.hidden :lat, :input_html => { :value => "#{@venue.location.lat}" }
-    = f.hidden :lng, :input_html => { :value => "#{@venue.location.lng}" }
+    = f.input :name, , :as => :hidden, :input_html => { :value => "#{@venue.name}" }
+    = f.input :foursq_id, , :as => :hidden, :input_html => { :value => "#{@venue.id}" }
+    = f.input :url_to_fsq, , :as => :hidden, :input_html => { :value => "#{@venue.canonicalUrl}" }
+    = f.input :street_address, , :as => :hidden, :input_html => { :value => "#{@venue.location.name}" }
+    = f.input :cross_street, , :as => :hidden, :input_html => { :value => "#{@venue.location.crossStreet}" }
+    = f.input :city, , :as => :hidden, :input_html => { :value => "#{@venue.location.city}" }
+    = f.input :state, , :as => :hidden, :input_html => { :value => "#{@venue.location.state}" }
+    = f.input :postal_code, , :as => :hidden, :input_html => { :value => "#{@venue.location.postalCode}" }
+    = f.input :country, , :as => :hidden, :input_html => { :value => "#{@venue.location.country}" }
+    = f.input :lat, , :as => :hidden, :input_html => { :value => "#{@venue.location.lat}" }
+    = f.input :lng, , :as => :hidden, :input_html => { :value => "#{@venue.location.lng}" }
 
   .form-actions
     = f.button :submit

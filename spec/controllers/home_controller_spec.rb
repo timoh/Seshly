@@ -8,5 +8,10 @@ describe HomeController do
       response.should be_success
     end
   end
+  
+  describe "content" do
+    it "should include posts"
+    
+  end
 
 end
