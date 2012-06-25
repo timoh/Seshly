@@ -58,12 +58,12 @@ describe LocationsController do
     end
   end
   
-  describe "once correctly signed in" # do
-   #    it "should include locations" do
-   #      valid_session
-   #      visit locations_path
-   #      page.should have_content('locations')
-   #    end 
-   # end
+  describe "once correctly signed in" do
+    xit "should include locations" do
+        valid_session
+        visit locations_path
+        page.should have_content('locations')
+    end 
+  end
 
 end
