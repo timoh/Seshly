@@ -16,3 +16,8 @@
           \- #{location.postal_code}, #{location.city} 
   - else 
     %p No results!
+    
+  %h1 From Foursquare
+
+  - if @fsq_locs.length > 0
+    #{@fsq_locs.to_yaml}

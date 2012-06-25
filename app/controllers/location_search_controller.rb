@@ -11,6 +11,7 @@ class LocationSearchController < ApplicationController
     if params[:location] && params[:code]
       access_token = foursquare.access_token(params["code"], "http://sesh-ly.herokuapp.com/location_search/")
       foursquare = Foursquare::Base.new(access_token)
+      @fsq_locs = foursquare.venues.search(:near => "Helsinki, Finland", :query => "#{params[:location]}") # Returns all resulting groups
       @location = Location.where(name: "#{params[:location]}")
     end
   end
