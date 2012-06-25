@@ -10,10 +10,10 @@
     = f.input :foursq_id, :as => :hidden, :input_html => { :value => "#{@venue.id}" }
     = f.input :url_to_fsq, :as => :hidden, :input_html => { :value => "#{@venue.short_url}" }
     = f.input :street_address, :as => :hidden, :input_html => { :value => "#{@venue.location.address}" }
-    -# = f.input :cross_street, :as => :hidden, :input_html => { :value => "#{@venue.location.crossStreet}" }
+    = f.input :cross_street, :as => :hidden, :input_html => { :value => "#{@venue.location.cross_street}" }
     = f.input :city, :as => :hidden, :input_html => { :value => "#{@venue.location.city}" }
     -# = f.input :state, :as => :hidden, :input_html => { :value => "#{@venue.location.state}" }
-    = f.input :postal_code, :as => :hidden, :input_html => { :value => "#{@venue.location.postalCode}" }
+    = f.input :postal_code, :as => :hidden, :input_html => { :value => "#{@venue.location.postal_code}" }
     = f.input :country, :as => :hidden, :input_html => { :value => "#{@venue.location.country}" }
     = f.input :lat, :as => :hidden, :input_html => { :value => "#{@venue.location.lat}" }
     = f.input :lng, :as => :hidden, :input_html => { :value => "#{@venue.location.lng}" }
