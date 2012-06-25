@@ -25,16 +25,21 @@ class LocationsController < ApplicationController
   # GET /locations/new
   # GET /locations/new.json
   def new
-    @venue_id = params[:fsq_venue_id]
-    
-    
-    
-    
     @location = Location.new
+    
+    if current_user.foursq_token && params[:fsq_venue_id]
+      @venue_data = Fetchvenue.with_id(params[:fsq_venue_id], current_user.foursq_token)
+      
+      
+      
+      
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @location }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @location }
+      end
+    else
+      redirect_to '/location_search', :notice => 'Please select venue first!'
     end
   end
 
