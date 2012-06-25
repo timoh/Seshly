@@ -1,7 +1,24 @@
-%h1 New location
+%h1 New location: #{@venue.name}
 
-#{@venue_data.to_yaml}
+= simple_form_for(@location) do |f|
+  = f.error_notification
 
-= render 'form'
+  .form-inputs
+    = f.input :description
+  
+    = f.hidden :name, :input_html => { :value => "#{@venue.name}" }
+    = f.hidden :foursq_id, :input_html => { :value => "#{@venue.id}" }
+    = f.hidden :url_to_fsq, :input_html => { :value => "#{@venue.canonicalUrl}" }
+    = f.hidden :street_address, :input_html => { :value => "#{@venue.location.name}" }
+    = f.hidden :cross_street, :input_html => { :value => "#{@venue.location.crossStreet}" }
+    = f.hidden :city, :input_html => { :value => "#{@venue.location.city}" }
+    = f.hidden :state, :input_html => { :value => "#{@venue.location.state}" }
+    = f.hidden :postal_code, :input_html => { :value => "#{@venue.location.postalCode}" }
+    = f.hidden :country, :input_html => { :value => "#{@venue.location.country}" }
+    = f.hidden :lat, :input_html => { :value => "#{@venue.location.lat}" }
+    = f.hidden :lng, :input_html => { :value => "#{@venue.location.lng}" }
+
+  .form-actions
+    = f.button :submit
 
 = link_to 'Back', locations_path
