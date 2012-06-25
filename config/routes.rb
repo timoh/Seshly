@@ -1,10 +1,9 @@
 Seshly::Application.routes.draw do
   resources :posts
-
   resources :locations
 
   root :to => "home#index"
-  resources :users, :only => [ :show, :edit, :update ]
+  resources :users
   match '/auth/:provider/callback' => 'sessions#create'
   match '/signin' => 'sessions#new', :as => :signin
   match '/signout' => 'sessions#destroy', :as => :signout

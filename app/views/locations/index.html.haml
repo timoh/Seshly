@@ -3,7 +3,7 @@
 %table
   %tr
     %th Name
-    %th 4sq
+    %th foursq
     %th Street address
     %th Cross street
     %th City
@@ -19,7 +19,7 @@
   - @locations.each do |location|
     %tr
       %td= location.name
-      %td= location.4sq_id
+      %td= location.foursq_id
       %td= location.street_address
       %td= location.cross_street
       %td= location.city
