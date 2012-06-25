@@ -11,7 +11,7 @@ gem "therubyracer", :group => :assets, :platform => :ruby
 
 gem 'foursquare'
 gem 'quimby'
-gem 'base58'
+#gem 'base58'
 
 gem 'jquery-rails'
 gem "haml", ">= 3.1.6"
