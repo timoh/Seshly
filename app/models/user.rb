@@ -4,6 +4,7 @@ class User
   field :uid, :type => String
   field :name, :type => String
   field :email, :type => String
+  field :foursq_token, :type => String
   attr_accessible :provider, :uid, :name, :email
   
   has_many :posts
