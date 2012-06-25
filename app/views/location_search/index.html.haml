@@ -20,4 +20,6 @@
   %h1 From Foursquare
 
   - if @fsq_locs.length > 0
-    #{@fsq_locs.to_yaml}
+    %ul
+    - @fsq_locs.each do |venue|
+      %li venue.name
