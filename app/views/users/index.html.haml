@@ -1,6 +1,8 @@
-%h2 Users
-- @users.each do |user|
-  %br/
-  #{link_to user.email, user} signed up #{user.created_at.to_date}
+%h2 Listing all users
+%ul
+  - @users.each do |user|
+    %li 
+      = link_to user.nickname, user
 
-= will_paginate
+
+  = will_paginate
