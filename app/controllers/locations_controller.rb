@@ -30,10 +30,6 @@ class LocationsController < ApplicationController
     if current_user.foursq_token && params[:fsq_venue_id]
       @venue_data = Fetchvenue.with_id(params[:fsq_venue_id], current_user.foursq_token)
       
-      
-      
-      
-
       respond_to do |format|
         format.html # new.html.erb
         format.json { render json: @location }
