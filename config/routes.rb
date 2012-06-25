@@ -6,6 +6,8 @@ Seshly::Application.routes.draw do
   resources :locations
   
   match '/location_search' => "location_search#index"
+  match '/location_search/save_token' => "location_search#save_token"
+  
   
   match '/auth/:provider/callback' => 'sessions#create'
   match '/signin' => 'sessions#new', :as => :signin
