@@ -42,4 +42,11 @@ class LocationSearchController < ApplicationController
     redirect_to '/location_search', :notice => 'Request successful!'
   end
   
+  def show_venue_raw
+    @venue = Fetchvenue.with_id(params[:fsq_venue_id], current_user.foursq_token)
+    respond_to do |format|
+      format.json { render json: @venue }
+    end
+  end
+  
 end

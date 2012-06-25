@@ -54,16 +54,18 @@ describe LocationsController do
     it "should say you don't have rights" do
       valid_session
       visit locations_path
-      page.should have_content('sign in')
+      page.should have_content('need to sign in')
     end
   end
   
   describe "once correctly signed in" do
     xit "should include locations" do
-        valid_session
-        visit locations_path
-        page.should have_content('locations')
+      valid_session
+      visit locations_path
+      page.should have_content('locations')
     end 
   end
+  
+  describe "creating a new location"
 
 end
