@@ -38,8 +38,8 @@ RSpec.configure do |config|
   # Clean up the database
   require 'database_cleaner'
   config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.orm = "mongoid"
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each) do
