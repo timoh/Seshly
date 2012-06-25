@@ -15,4 +15,6 @@
 
 %h3 Users in the system
 - @users.each do |user|
-  %p User: #{link_to user.nickname, user}
+  %p 
+    User: 
+    = link_to user.nickname, user
