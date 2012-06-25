@@ -8,7 +8,7 @@
   
     = f.input :name, :as => :hidden, :input_html => { :value => "#{@venue.name}" }
     = f.input :foursq_id, :as => :hidden, :input_html => { :value => "#{@venue.id}" }
-    = f.input :url_to_fsq, :as => :hidden, :input_html => { :value => "#{@venue.canonicalUrl}" }
+    = f.input :url_to_fsq, :as => :hidden, :input_html => { :value => "#{@venue.short_url}" }
     = f.input :street_address, :as => :hidden, :input_html => { :value => "#{@venue.location.name}" }
     = f.input :cross_street, :as => :hidden, :input_html => { :value => "#{@venue.location.crossStreet}" }
     = f.input :city, :as => :hidden, :input_html => { :value => "#{@venue.location.city}" }
