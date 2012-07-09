@@ -24,17 +24,19 @@ class LocationSearchController < ApplicationController
   end
   
   def save_token
-    raise 'CALLBACK CODE NEEDED TO GENERATE ACCESS TOKEN!' if params[:code] == nil
-    raise 'CURRENT USER NOT SET!' if current_user == nil
-    if current_user
-      if (params[:code])
-        if (params[:code].length > 0)
-          current_user.foursq_token = self.generate_token(params['code'])
-          raise 'FOURSQUARE TOKEN SAVE FAILED!' unless current_user.save!
-        end   
-      end
-    else
+    
+    if current_user == nil
       redirect_to '/signin', :notice => 'Please sign in first!'
+    end
+    raise 'CURRENT USER NOT SET!' if current_user == nil
+    
+    
+    raise 'CALLBACK CODE NEEDED TO GENERATE ACCESS TOKEN!' if params[:code] == nil
+    if (params[:code])
+      if (params[:code].length > 0)
+        current_user.foursq_token = self.generate_token(params['code'])
+        raise 'FOURSQUARE TOKEN SAVE FAILED!' unless current_user.save!
+      end   
     end
     
     raise 'REDIRECT URI MISMATCH!' if params[:error] == 'redirect_uri_mismatch'
