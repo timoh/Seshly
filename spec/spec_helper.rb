@@ -21,7 +21,9 @@ RSpec.configure do |config|
   
   config.render_views
   
-  OmniAuth.config.test_mode = true
+  # Capybara.register_driver :selenium do |app|
+  #   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  # end
   
   # ## Mock Framework
   #

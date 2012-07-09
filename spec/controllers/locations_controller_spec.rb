@@ -38,14 +38,6 @@ describe LocationsController do
   
   before do
     OmniAuth.config.test_mode = true
-    
-    OmniAuth.config.mock_auth[:twitter] = {
-    'uid' => '1337',
-    'provider' => 'twitter',
-    'info' => {
-      'name' => 'JonnieHallman'
-    }
-  }
   end
 
   describe "GET 'index'" do
@@ -66,8 +58,7 @@ describe LocationsController do
   
   describe "once correctly signed in" do  
     it "should include locations" do
-      set_omniauth()
-      click_link_or_button 'Login'
+      visit "/auth/twitter"
       visit locations_path
       page.should have_content('locations')
     end 
