@@ -1,4 +1,4 @@
-%h2 Most recent posts
+%h2 Most recent sessions
 - if @posts.length > 0
   %table.table.table-striped
     %thead
@@ -22,9 +22,5 @@
   %p No posts yet!
   %a.btn.btn-primary{:href => "#{new_post_path}"}
     Create a new post!
-
-%h3 Users in the system
-- @users.each do |user|
-  %p 
-    User: 
-    = link_to user.nickname, user
+    
+= link_to 'Sesh now!', new_post_path, :class => "btn btn-primary btn-large"
