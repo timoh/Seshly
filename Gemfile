@@ -32,7 +32,6 @@ group :development, :test do
   gem "launchy"
   gem "database_cleaner"
   gem "factory_girl_rails"
-  gem "cucumber-rails", :require => false
   gem "email_spec"
   gem "machinist"
 end                        
@@ -46,5 +45,4 @@ group :development do
   gem "guard-rails"
   gem "guard-livereload"
   gem "guard-rspec"
-  gem "guard-cucumber"
 end
