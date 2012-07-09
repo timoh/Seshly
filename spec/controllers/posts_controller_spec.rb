@@ -53,7 +53,7 @@ describe PostsController do
       visit "/auth/twitter"
       visit posts_path
       page.should have_content('Author')
-      page.should have_content('posts')
+      page.should have_content('sessions')
     end 
   end
 
