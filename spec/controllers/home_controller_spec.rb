@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe HomeController do
+  
+  before do
+    
+  end
 
   describe "GET 'index'" do
     it "returns http success" do
@@ -18,6 +22,7 @@ describe HomeController do
   
   describe "when a user is not logged in" do
     it "should encourage to sign up by redirecting to signup when user tries to create a new post"
+    
   end
 
 end

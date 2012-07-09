@@ -14,6 +14,8 @@ require 'capybara/rails'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 Dir[Rails.root.join("spec/integration/**/*.rb")].each {|f| require f}
 
+OmniAuth.config.test_mode = true
+
 RSpec.configure do |config|
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)

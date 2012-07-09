@@ -37,7 +37,7 @@ describe LocationsController do
   end
   
   before do
-    OmniAuth.config.test_mode = true
+    
   end
 
   describe "GET 'index'" do
