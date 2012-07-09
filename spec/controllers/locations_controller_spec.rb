@@ -32,7 +32,7 @@ describe LocationsController do
   # LocationsController. Be sure to keep this updated too.
   def valid_session
     {}
-    user = Factory(:user)
+    user = FactoryGirl.create(:user)
     session[:user_id] = user.id
   end
   
