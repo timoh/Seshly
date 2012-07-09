@@ -25,11 +25,11 @@ class LocationSearchController < ApplicationController
   
   def save_token
     raise 'CALLBACK CODE NEEDED TO GENERATE ACCESS TOKEN!' if params[:code] == nil
+    raise 'CURRENT USER NOT SET!' if current_user == nil
     if current_user
-    
       if (params[:code])
         if (params[:code].length > 0)
-          current_user.foursq_token = Fetchvenue.generate_access_token(params['code'])
+          current_user.foursq_token = self.generate_token(params['code'])
           raise 'FOURSQUARE TOKEN SAVE FAILED!' unless current_user.save!
         end   
       end
@@ -43,10 +43,20 @@ class LocationSearchController < ApplicationController
   end
   
   def show_venue_raw
-    @venue = Fetchvenue.with_id(params[:fsq_venue_id], current_user.foursq_token)
+    @venue = self.fetch_with_id(params[:fsq_venue_id])
     respond_to do |format|
       format.json { render json: @venue }
     end
   end
+  
+  private
+  
+    def self.generate_token(code)
+      return Fetchvenue.generate_access_token(code)
+    end
+  
+    def self.fetch_with_id(venue_id)
+       return Fetchvenue.with_id(venue_id, current_user.foursq_token)
+    end
   
 end
