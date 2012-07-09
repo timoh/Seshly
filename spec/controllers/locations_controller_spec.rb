@@ -37,20 +37,18 @@ describe LocationsController do
   end
   
   before do
-    
+    OmniAuth.config.test_mode = true
   end
 
-  describe "GET 'index'" do
+  describe "visiting index should result in successful response" do
     it "returns http success" do
-      valid_session
-      get 'index'
+      visit "/locations"
       response.should be_success
     end
   end
   
   describe "unauthenticated access" do
     it "should say you don't have rights" do
-      valid_session
       visit locations_path
       page.should have_content('need to sign in')
     end

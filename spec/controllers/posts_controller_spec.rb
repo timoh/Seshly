@@ -34,6 +34,27 @@ describe PostsController do
     {}
   end
 
-  describe "GET index"
+  describe "visiting index should result in successful response" do
+    it "returns http success" do
+      visit "/posts"
+      response.should be_success
+    end
+  end
+  
+  describe "unauthenticated access" do
+    it "should say you don't have rights" do
+      visit posts_path
+      page.should have_content('need to sign in')
+    end
+  end
+  
+  describe "once correctly signed in" do  
+    it "should include locations" do
+      visit "/auth/twitter"
+      visit posts_path
+      page.should have_content('Author')
+      page.should have_content('posts')
+    end 
+  end
 
 end
