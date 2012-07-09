@@ -261,6 +261,7 @@ DEPENDENCIES
   quimby
   rails
   rb-fsevent
+  rspec
   rspec-rails
   sass-rails
   simple_form

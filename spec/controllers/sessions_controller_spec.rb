@@ -8,7 +8,8 @@ describe SessionsController do
 		    'uid' => '12345',
 		    'provider' => 'twitter',
 		    'info' => {
-		      'name' => 'Bob'
+		      'name' => 'Bob',
+		      'email' => 'bob@example.com'
 		    }
 		  }
 	end

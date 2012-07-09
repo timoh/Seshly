@@ -22,6 +22,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   
   config.render_views
+
   
   # Capybara.register_driver :selenium do |app|
   #   Capybara::Selenium::Driver.new(app, :browser => :chrome)

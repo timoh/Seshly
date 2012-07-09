@@ -26,6 +26,7 @@ gem "country_select"
 gem "will_paginate_mongoid"
 
 group :development, :test do
+  gem "rspec"
   gem "rspec-rails"
   gem "mongoid-rspec"
   gem "capybara"
