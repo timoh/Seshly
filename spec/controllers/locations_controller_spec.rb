@@ -47,13 +47,6 @@ describe LocationsController do
     end
   end
   
-  describe "unauthenticated access" do
-    it "should say you don't have rights" do
-      visit locations_path
-      page.should have_content('need to sign in')
-    end
-  end
-  
   describe "once correctly signed in" do  
     it "should include locations" do
       visit "/auth/twitter"
