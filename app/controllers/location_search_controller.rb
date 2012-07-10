@@ -9,13 +9,15 @@ class LocationSearchController < ApplicationController
         redirect_to foursquare.authorize_url(ENV['DOMAIN_URL']+"/location_search/save_token")
       end
     
-      if params[:location] && 
+      if params[:location]
           access_token = current_user.foursq_token
           
-          raise 'access_token is nil!' if access_token == nil
-          @fsq_locs = Fetchvenue.with_keyword(params[:location], access_token)
+          search_query = sanitize params[:location]
           
-          @location = Location.where(name: "#{params[:location]}")
+          raise 'access_token is nil!' if access_token == nil
+          @fsq_locs = Fetchvenue.with_keyword(search_query, access_token)
+
+          @location = Location.where(name: /#{search_query}/i).first
       end
       
     else
