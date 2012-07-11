@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show]
+  before_filter :authenticate_user!, :except => [:show, :new]
   # GET /posts
   # GET /posts.json
   def index
@@ -25,12 +25,17 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
-    @post = Post.new
+    if !current_user
+      redirect_to '/auth/twitter'
+    else
+      @post = Post.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @post }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @post }
+      end
     end
+    
   end
 
   # GET /posts/1/edit

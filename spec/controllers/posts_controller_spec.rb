@@ -33,28 +33,49 @@ describe PostsController do
   def valid_session
     {}
   end
-
-  describe "visiting index should result in successful response" do
-    it "returns http success" do
-      visit "/posts"
-      response.should be_success
+  context '#index' do
+    
+    describe "visiting index should result in successful response" do
+      it "returns http success" do
+        visit "/posts"
+        response.should be_success
+      end
     end
+  
+    describe "unauthenticated access" do
+      it "should say you don't have rights" do
+        visit posts_path
+        page.should have_content('need to sign in')
+      end
+    end
+  
+    describe "once correctly signed in" do  
+      it "should include locations" do
+        visit "/auth/twitter"
+        visit posts_path
+        page.should have_content('Author')
+        page.should have_content('sessions')
+      end 
+    end
+    
   end
   
-  describe "unauthenticated access" do
-    it "should say you don't have rights" do
-      visit posts_path
-      page.should have_content('need to sign in')
+  context '#new' do
+    describe 'to encourage posting' do
+      
+      describe 'if user is not signed in' do        
+        it 'should redirect straight to twitter auth' do
+          get 'new'
+          response.should be_redirect
+        end
+        
+        it 'should show signed in' do
+          visit '/posts/new'
+          page.should have_content('Logout')
+        end
+      end
+      
     end
-  end
-  
-  describe "once correctly signed in" do  
-    it "should include locations" do
-      visit "/auth/twitter"
-      visit posts_path
-      page.should have_content('Author')
-      page.should have_content('sessions')
-    end 
   end
 
 end
