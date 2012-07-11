@@ -29,11 +29,6 @@ describe "Posts" do
         page.should have_content('You need to sign in')
       end
       
-      it 'should not let the user to post' do
-        visit '/posts/new'
-        page.should have_content('You need to sign in')
-      end
-      
     end
   
     describe 'when signed in' do
