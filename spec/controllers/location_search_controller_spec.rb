@@ -52,6 +52,11 @@ describe LocationSearchController do
       page.should have_content('Results')
       page.should have_content('Kiasma')
     end 
+    
+    xit "should make sure database query is sanitized"
+    
+    xit "should make sure the search actually works, stub out the FSq stuff"
+    
   end
 
 end

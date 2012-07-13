@@ -5,5 +5,6 @@ FactoryGirl.define do
     provider "twitter"
     uid "12345"
     name "Bob"
+    nickname "bobbieb"
   end
 end

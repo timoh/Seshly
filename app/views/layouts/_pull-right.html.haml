@@ -1,9 +1,9 @@
 %a.btn.dropdown-toggle{"data-toggle" => 'dropdown', :href => '#'}
   %i.icon-user
   - if current_user
-    #{current_user.name}
+    &#64;#{current_user.nickname}
   - else
-    Login / Sign up
+    Sign in
   %span.caret
 %ul.dropdown-menu
   - if current_user
