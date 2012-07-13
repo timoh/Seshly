@@ -1,7 +1,16 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 require 'spec_helper'
 require 'rspec/mocks'
 
 describe LocationSearchController do
+  
+  # after(:each) do
+  #   if example.exception
+  #     save_and_open_page 
+  #   end
+  # end
   
   describe "visiting index should result in successful response" do
     it "returns http success" do
@@ -11,7 +20,6 @@ describe LocationSearchController do
   end
   
   describe "once correctly signed in" do  
-    
     before do
         OmniAuth.config.mock_auth[:twitter] = {
   		    'uid' => '12345',
@@ -24,14 +32,34 @@ describe LocationSearchController do
   		  }
   		  
   		  visit "/auth/twitter"
+  		  
+  		user = User.first
+      user.foursq_token = 'FZA235ZWUS3ETFPZC5PXUYEFZRDOMYINFEGZOZPE5VXW5AQV'
+      user.save!
+               
+      # venue_hash = {
+      #   
+      #   "venue" => {
+      #     
+      #     "id"=> "4bd424b5b221c9b63b15dbd0", 
+      #     "name"=> "Eläintarhan skeittipuisto, Micropolis Skate Park", 
+      #     
+      #     "location"=> {
+      #       "address"=>"Nordenskiöldinkatu", 
+      #       "crossStreet"=>"Hammarskjöldintie",
+      #       "lat"=>60.191882003178755,
+      #       "lng"=>24.92883083314635,
+      #       "postalCode"=>"00250",
+      #       "city"=>"Helsinki",
+      #       "country"=>"Finland",
+      #       "cc"=>"FI"
+      #     }  
+      #   }
+      # }
+      
+      # Fetchvenue.stub!(:with_keyword).and_return(venue_hash)
     end
-    
-    after(:each) do
-      if example.exception
-        #save_and_open_page 
-      end
-    end
-    
+   
     it "should include have title and search form" do
       visit "/location_search"
       page.should have_content('Location Search')
@@ -40,27 +68,28 @@ describe LocationSearchController do
     end 
     
     it "should be able to submit form" do
-      Fetchvenue.stub(:generate_access_token).and_return('FZA235ZWUS3ETFPZC5PXUYEFZRDOMYINFEGZOZPE5VXW5AQV')
-      user = User.first
-      user.foursq_token = 'FZA235ZWUS3ETFPZC5PXUYEFZRDOMYINFEGZOZPE5VXW5AQV'
-      user.save!
-      Fetchvenue.stub!(:with_id)
-
-      visit "/location_search"
-      page.should have_content(User.first.nickname)
+      visit "/location_search"  
       page.should have_field('location')
-      page.fill_in 'location', :with => 'Kiasma'
       
+      page.fill_in 'location', :with => 'Kiasma'
       page.click_button 'Submit'
       
-      puts page.to_s 
       page.should have_content('Results')
       page.should have_content('Kiasma')
     end 
+      
+    it "should check that @locations is an array containing location objects" do
+      new_location = FactoryGirl.create(:location, :name => 'Kiasma')
+      Fetchvenue.stub!(:with_id)
+      
+      visit "/location_search"
+      page.fill_in 'location', :with => 'Kiasma'
+      page.click_button 'Submit'
+      
+      page.should have_content('Kiasma')
+    end
     
     xit "should make sure database query is sanitized"
-    
-    xit "should check that @locations is an array containing location objects"
     
   end
 

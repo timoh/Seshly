@@ -14,8 +14,8 @@ class Fetchvenue
     raise 'empty keyword for With Keyword' if keyword == nil
     raise 'empty access_token for With Keyword' if access_token == nil
     foursquare = Foursquare::Base.new(access_token)
-    output = foursquare.venues.search(:ll => '44.3,37.2', :near => "Helsinki, Finland", :query => "#{keyword}", :oauth_token => access_token)
-    return output['places']
+    result = foursquare.venues.search(:ll => '44.3,37.2', :near => "Helsinki, Finland", :query => "#{keyword}", :oauth_token => access_token)
+    return result['places']
   end
   
   def self.generate_access_token(callback_code)
@@ -26,3 +26,4 @@ class Fetchvenue
   end
   
 end
+  
