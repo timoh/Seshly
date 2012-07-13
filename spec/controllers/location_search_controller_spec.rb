@@ -40,7 +40,7 @@ describe LocationSearchController do
     end 
     
     it "should be able to submit form" do
-      Fetchvenue.should_receive(:generate_access_token).and_return('FZA235ZWUS3ETFPZC5PXUYEFZRDOMYINFEGZOZPE5VXW5AQV')
+      Fetchvenue.stub(:generate_access_token).and_return('FZA235ZWUS3ETFPZC5PXUYEFZRDOMYINFEGZOZPE5VXW5AQV')
       user = User.first
       user.foursq_token = 'FZA235ZWUS3ETFPZC5PXUYEFZRDOMYINFEGZOZPE5VXW5AQV'
       user.save!
@@ -52,7 +52,6 @@ describe LocationSearchController do
       page.fill_in 'location', :with => 'Kiasma'
       
       page.click_button 'Submit'
-      params[:code] == 'mock'
       
       puts page.to_s 
       page.should have_content('Results')

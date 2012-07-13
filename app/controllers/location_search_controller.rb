@@ -13,7 +13,9 @@ class LocationSearchController < ApplicationController
     
       # if token exists & token ins created, continue with fetching the location
       if params[:location]
-        search_venue(params[:location])
+        # any way to sanitize input??
+        @fsq_locs = search_venue(params[:location])
+        @location = Location.where(name: /#{params[:location]}/i).first || []
       end
       
     # you cannot use the location search without signing in!  
@@ -59,14 +61,10 @@ class LocationSearchController < ApplicationController
   private
   
     def search_venue(location)
-          access_token = current_user.foursq_token
-          raise 'access_token is nil!' if access_token == nil
-  
-          # any way to sanitize input??
-          search_query = location
-           
-          @fsq_locs = Fetchvenue.with_keyword(search_query, access_token)
-          @location = Location.where(name: /#{search_query}/i).first
+      raise 'location is nil in SEARCH VENUE' if location == nil  
+      access_token = current_user.foursq_token
+      raise 'access_token is nil!' if access_token == nil
+      return Fetchvenue.with_keyword(location, access_token) 
     end
    
     #
@@ -75,11 +73,13 @@ class LocationSearchController < ApplicationController
     #
     
     def self.generate_token(code)
+      raise 'code is empty in GENERATE CODE' if code == nil
       return Fetchvenue.generate_access_token(code)
     end
   
     def self.fetch_with_id(venue_id)
-       return Fetchvenue.with_id(venue_id, current_user.foursq_token)
+      raise 'venue_id is empty in FETCH WITH ID' if venue_id == nil
+      return Fetchvenue.with_id(venue_id, current_user.foursq_token)
     end
   
 end
