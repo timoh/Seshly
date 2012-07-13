@@ -18,7 +18,8 @@ describe LocationSearchController do
   		    'provider' => 'twitter',
   		    'info' => {
   		      'name' => 'Bob',
-  		      'email' => 'bob@example.com'
+  		      'email' => 'bob@example.com',
+  		      'nickname' => 'bobbieb'
   		    }
   		  }
   		  
@@ -39,12 +40,17 @@ describe LocationSearchController do
     end 
     
     it "should be able to submit form" do
-      Fetchvenue.stub!(:generate_access_token).and_return('12345')
+      Fetchvenue.should_receive(:generate_access_token).and_return('FZA235ZWUS3ETFPZC5PXUYEFZRDOMYINFEGZOZPE5VXW5AQV')
+      user = User.first
+      user.foursq_token = 'FZA235ZWUS3ETFPZC5PXUYEFZRDOMYINFEGZOZPE5VXW5AQV'
+      user.save!
       Fetchvenue.stub!(:with_id)
 
       visit "/location_search"
+      page.should have_content(User.first.nickname)
       page.should have_field('location')
       page.fill_in 'location', :with => 'Kiasma'
+      
       page.click_button 'Submit'
       params[:code] == 'mock'
       

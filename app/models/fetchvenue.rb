@@ -17,7 +17,6 @@ class Fetchvenue
   def self.generate_access_token(callback_code)
     foursquare = Foursquare::Base.new(ENV['FOURSQUARE_KEY'], ENV['FOURSQUARE_SECRET'])
     access_token = foursquare.access_token(callback_code, ENV['DOMAIN_URL']+"/location_search/")
-    logger.debug access_token.to_yaml
     return access_token
   end
   
