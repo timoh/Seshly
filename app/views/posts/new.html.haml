@@ -1,5 +1,13 @@
 %h1 Tell about your sesh!
 
+:javascript
+  jQuery(function ($) {
+  	$(document).ready(function(){
+  		post_geolocate();
+  	});	
+  });
+
+
 = link_to 'Add a location', new_location_path, :class => 'btn btn-success'
 
 %hr 
