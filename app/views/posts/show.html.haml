@@ -3,7 +3,10 @@
 %p
   %img{:src => "#{@post.user.image if @post.user.image} "}
   = link_to @post.user.nickname, @post.user
-  on #{@post.created_at.to_s(:long)}
+  on #{@post.created_at.to_s(:long)} 
+  - if @post.latitude && @post.longitude
+    at coordinates
+    %i #{@post.latitude}, #{@post.longitude}
 
 %p
   %blockquote.well

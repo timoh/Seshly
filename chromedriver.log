@@ -1,0 +1,22 @@
+[0.013][INFO]:      ChromeDriver 21.0.1180.4 /usr/bin/chromedriver
+[0.223][FINE]:      Initializing session with capabilities {
+   "browserName": "chrome",
+   "chrome.detach": true,
+   "chrome.extensions": [  ],
+   "chrome.profile": "UEsDBBQAAAAIAA4P7kCOJPnlLwAAAC0AAAATAAAARGVmYXVsdC9QcmVmZXJlbmNlc6tWSk/Nz8lPTizJzM9TsqpWSklNSyzNK...",
+   "chromeOptions": {
+      "detach": true,
+      "extensions": [  ],
+      "profile": "UEsDBBQAAAAIAA4P7kCOJPnlLwAAAC0AAAATAAAARGVmYXVsdC9QcmVmZXJlbmNlc6tWSk/Nz8lPTizJzM9TsqpWSklNSyzNK..."
+   },
+   "cssSelectorsEnabled": true,
+   "javascriptEnabled": true,
+   "nativeEvents": false,
+   "platform": "ANY",
+   "rotatable": false,
+   "takesScreenshot": false,
+   "version": ""
+}
+
+[0.245][INFO]:      Using named testing interface
+[2.290][INFO]:      Connected to Chrome successfully. Version: 17.0.963.83

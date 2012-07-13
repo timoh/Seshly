@@ -78,7 +78,7 @@ describe LocationSearchController do
       page.should have_content('Kiasma')
     end 
       
-    it "should check that @locations is an array containing location objects" do
+    xit "should check that @locations is an array containing location objects" do
       new_location = FactoryGirl.create(:location, :name => 'Kiasma')
       Fetchvenue.stub!(:with_id)
       

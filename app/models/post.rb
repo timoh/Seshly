@@ -3,6 +3,8 @@ class Post
   include Mongoid::Timestamps
   field :description, :type => String
   field :short_url, :type => String
+  field :latitude, :type => Float
+  field :longitude, :type => Float
   
   belongs_to :location
   belongs_to :user

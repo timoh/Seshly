@@ -68,10 +68,30 @@ describe PostsController do
           get 'new'
           response.should be_redirect
         end
-        
+      end
+      
+      describe 'if user is signed in' do 
         it 'should show signed in' do
+          visit '/auth/twitter'
           visit '/posts/new'
           page.should have_content('Logout')
+        end
+        
+        xit 'should gather geolocation-data', :js => true do
+          visit '/auth/twitter'
+          visit '/posts/new'
+          #page.execute_script "post_values(60.16981200000001, 24.93824);"
+          page.execute_script('window.navigator.geolocation.getCurrentPosition = 
+            function(success){
+            var position = {"coords" : {
+                                       "latitude": "60.16981200000001", 
+                                       "longitude": "24.93824"
+                                     }
+                         }; 
+            success(position);}');
+          page.fill_in 'post_description', :with => 'Post text!' 
+          page.click_button 'Create Post'
+          page.should have_content('60.16981200000001, 24.93824')
         end
       end
       

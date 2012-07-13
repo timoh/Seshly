@@ -8,6 +8,7 @@ require 'email_spec'
 #Capybara
 require 'capybara/rspec'
 require 'capybara/rails'
+require 'selenium/webdriver'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -21,11 +22,14 @@ RSpec.configure do |config|
   config.include(EmailSpec::Matchers)
   config.include FactoryGirl::Syntax::Methods
   
-  config.render_views
-
+  config.render_views    
   
-  # Capybara.register_driver :selenium do |app|
-  #   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  # Capybara.register_driver :selenium_with_geolocation do |app|
+  #   profile = Selenium::WebDriver::Firefox::Profile.new
+  #   profile['geolocation.default_content_setting'] = 1
+  # 
+  #   config = { :browser => :firefox, :profile => profile }    
+  #   Capybara::Selenium::Driver.new(app, config)
   # end
   
   # ## Mock Framework
