@@ -60,6 +60,8 @@ describe LocationSearchController do
     
     xit "should make sure database query is sanitized"
     
+    xit "should check that @locations is an array containing location objects"
+    
   end
 
 end

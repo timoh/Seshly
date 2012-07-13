@@ -15,7 +15,7 @@ class LocationSearchController < ApplicationController
       if params[:location]
         # any way to sanitize input??
         @fsq_locs = search_venue(params[:location])
-        @location = Location.where(name: /#{params[:location]}/i).first || []
+        @location = Location.where(name: /#{params[:location]}/i) || []
       end
       
     # you cannot use the location search without signing in!  
