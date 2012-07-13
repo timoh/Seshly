@@ -38,8 +38,8 @@ describe LocationSearchController do
       page.should have_field('location')
     end 
     
-    xit "should be able to submit form" do
-      Fetchvenue.stub!(:generate_access_token)
+    it "should be able to submit form" do
+      Fetchvenue.stub!(:generate_access_token).and_return('12345')
       Fetchvenue.stub!(:with_id)
 
       visit "/location_search"
@@ -54,8 +54,6 @@ describe LocationSearchController do
     end 
     
     xit "should make sure database query is sanitized"
-    
-    xit "should make sure the search actually works, stub out the FSq stuff"
     
   end
 

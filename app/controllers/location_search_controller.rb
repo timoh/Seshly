@@ -13,7 +13,7 @@ class LocationSearchController < ApplicationController
     
       # if token exists & token ins created, continue with fetching the location
       if params[:location]
-        self.search_venue(params[:location])
+        search_venue(params[:location])
       end
       
     # you cannot use the location search without signing in!  
@@ -58,7 +58,7 @@ class LocationSearchController < ApplicationController
   
   private
   
-    def self.search_venue(location, access_token)
+    def search_venue(location)
           access_token = current_user.foursq_token
           raise 'access_token is nil!' if access_token == nil
   
@@ -68,7 +68,7 @@ class LocationSearchController < ApplicationController
           @fsq_locs = Fetchvenue.with_keyword(search_query, access_token)
           @location = Location.where(name: /#{search_query}/i).first
     end
-  
+   
     #
     # IDEA HERE WAS TO MAKE THESE METHODS MORE TESTABLE,
     # BUT ....
