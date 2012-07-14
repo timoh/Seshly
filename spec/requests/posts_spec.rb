@@ -32,7 +32,6 @@ describe "Posts" do
     end
   
     describe 'when signed in' do
-  
       before do
         visit '/auth/twitter'
       end
@@ -42,6 +41,21 @@ describe "Posts" do
         page.should have_content('Edit')
       end
     end
-  end
     
+    describe 'when location in linked to post' do
+    
+      before do
+        visit '/auth/twitter'
+        @location = FactoryGirl.create(:location)
+        @post.location = @location
+        @post.save!
+      end
+    
+      it 'should show location' do
+        visit '/posts/'+@post.id.to_s
+        page.should have_content(@location.name)
+      end
+    end
+    
+  end  
 end
