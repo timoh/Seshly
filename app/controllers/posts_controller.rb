@@ -52,7 +52,7 @@ class PostsController < ApplicationController
       if current_user.foursq_token
         if current_user.foursq_token.length > 0
           if foursquare_id.length > 0
-            venue = Fetchvenue.with_id(foursquare_id)
+            venue = Fetchvenue.with_id(foursquare_id, current_user.foursq_token)
             raise venue
           end
          else
