@@ -74,6 +74,7 @@ GEM
       hashie (>= 0.1.8)
       httparty (>= 0.4.3)
       oauth (>= 0.3.5)
+    gmaps4rails (1.5.2)
     growl (1.0.3)
     guard (1.2.3)
       listen (>= 0.4.2)
@@ -243,6 +244,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   foursquare
+  gmaps4rails
   growl
   guard
   guard-bundler
