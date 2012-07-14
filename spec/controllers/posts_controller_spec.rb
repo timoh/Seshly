@@ -53,7 +53,7 @@ describe PostsController do
       it "should include locations" do
         visit "/auth/twitter"
         visit posts_path
-        page.should have_content('Author')
+        page.should have_content('User')
         page.should have_content('sessions')
       end 
     end

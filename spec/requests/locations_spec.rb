@@ -44,10 +44,9 @@ describe "Locations" do
           FactoryGirl.create(:location)
         end
       
-        it 'should have edit & destroy control' do
+        it 'should have new location control' do
           visit '/locations'
-          page.should have_content('Edit')
-          page.should have_content('Destroy') 
+          page.should have_content('New Location')
         end
       end
     

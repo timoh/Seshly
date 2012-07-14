@@ -26,31 +26,40 @@
     
     %p 
       %b Who else is going?
-      
-    - if @post.attendances.size > 0
-      %table.table.table-striped.table-bordered
-        %thead
-          %tr 
-            %th
-            %th Who
-            %th Time announced
-        - @post.attendances.each do |attendee|
-          %tr
-            %td
-              %img{:src => "#{attendee.user.image if attendee.user.image} "}
-            %td
-              =link_to '@'+attendee.user.nickname, user_path(attendee.user) 
-            %td
-              = time_ago_in_words(attendee.created_at)
-              ago
+    - if @post.attendances  
+      - if @post.attendances.size > 0
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr 
+              %th
+              %th Who
+              %th Time announced
+          - @post.attendances.each do |attendee|
+            %tr
+              %td
+                %img{:src => "#{attendee.user.image if attendee.user.image} "}
+              %td
+                =link_to '@'+attendee.user.nickname, user_path(attendee.user) 
+              %td
+                = time_ago_in_words(attendee.created_at)
+                ago
+                
     - else 
       %p.well Be the first to attend!
+      
     
-    - if current_user.attendances.includes(@post.attendances).length > 0
-      %a.btn.btn-primary#attend{:href => '/unattend/'+current_user.attendances.where(:post_id => @post.id).first.id.to_s} Bail out!
-    -else
-      - if @post.user != current_user
-        %a.btn.btn-primary#attend{:href => '/attend/'+@post.id.to_s} Attend! 
+    - if current_user
+      - if current_user.attendances  
+        - if current_user.attendances.includes(@post.attendances).length > 0
+          %a.btn.btn-primary#attend{:href => '/unattend/'+current_user.attendances.where(:post_id => @post.id).first.id.to_s} Bail out!
+        -else
+          - if @post.user != current_user
+            %a.btn.btn-primary#attend{:href => '/attend/'+@post.id.to_s} Attend! 
+      -else
+        - if @post.user != current_user
+          %a.btn.btn-primary#attend{:href => '/attend/'+@post.id.to_s} Attend! 
+    
+
     
   - if @post.location
     .span4
