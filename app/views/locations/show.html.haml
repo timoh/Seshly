@@ -1,11 +1,12 @@
 %p#notice= notice
 
-%p
-  %b Name:
+%h1
   - if @location.url_to_fsq
     = link_to @location.name, @location.url_to_fsq
   - else
     = @location.name
+    
+
 - if @location.street_address
   %p
     %b Street address:
@@ -30,14 +31,18 @@
   %p
     %b Country:
     = @location.country
-- if @location.lat    
-  %p
-    %b Lat:
-    = @location.lat
-- if @location.lng   
-  %p
-    %b Lng:
-    = @location.lng
+    
+- if @location.posts.count > 0
+  #sessions_list
+    %p 
+      %b Sessions:
+    %ul 
+    - @location.posts.each do |post|
+      %li
+        = link_to post.created_at.to_s(:short)+': "'+post.description+'" (@'+post.user.nickname+')', post_path(post)
+        
+#location_detail      
+  = render 'map'
 
 -if current_user
   = link_to 'Edit', edit_location_path(@location)

@@ -3,15 +3,9 @@
 %table
   %tr
     %th Name
-    %th foursq
     %th Street address
-    %th Cross street
     %th City
-    %th State
-    %th Postal code
-    %th Country
-    %th Lat
-    %th Lng
+    %th Sessions
     %th
     %th
     %th
@@ -19,15 +13,9 @@
   - @locations.each do |location|
     %tr
       %td= location.name
-      %td= location.foursq_id
       %td= location.street_address
-      %td= location.cross_street
       %td= location.city
-      %td= location.state
-      %td= location.postal_code
-      %td= location.country
-      %td= location.lat
-      %td= location.lng
+      %td= location.posts.count
       %td= link_to 'Show', location
       - if current_user
         %td= link_to 'Edit', edit_location_path(location)
