@@ -34,6 +34,7 @@ function fetch_locations(query, access_token) {
 		data: { location: query, access_token: access_token },
 		cache: false, 
 		success: function(results) {
+			console.log(results);
 			for (i=0; i<results.length; i++ ) {
 				$('#location-results').append('<li class="location-selector"><a href="#" id="'+results[i].foursq_id+'">'+results[i].name+'</a></li>')	
 			}
