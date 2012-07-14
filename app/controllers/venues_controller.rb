@@ -7,7 +7,7 @@ class VenuesController < ApplicationController
     raise 'ACCESS TOKEN MISSING' if !access_token
     raise 'ACCESS TOKEN NOT VALID' if access_token.length < 3
     
-    @venue = Fetchvenue.with_id(query, access_token)
+    @venue = Fetchvenue.with_keyword(query, access_token)
     
     respond_to do |format|
       format.html

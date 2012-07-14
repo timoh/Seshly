@@ -5,7 +5,7 @@ describe VenuesController do
     
     describe "visiting index should result in successful response" do
       it "returns http success" do
-        Fetchvenue.stub!(:with_id)
+        Fetchvenue.stub!(:with_keyword)
         visit "/venues.json?location=test&access_token=asdasd123123"
         response.should be_success
       end
