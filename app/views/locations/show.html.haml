@@ -1,50 +1,71 @@
 %p#notice= notice
 
-%h1
-  - if @location.url_to_fsq
-    = link_to @location.name, @location.url_to_fsq
-  - else
-    = @location.name
-    
+.row
+  .span12
+    %h1
+      - if @location.url_to_fsq
+        = link_to @location.name, @location.url_to_fsq
+      - else
+        = @location.name
+.row 
+  .span6    
 
-- if @location.street_address
-  %p
-    %b Street address:
-    = @location.street_address
-- if @location.cross_street
-  %p
-    %b Cross street:
-    = @location.cross_street
-- if @location.city
-  %p
-    %b City:
-    = @location.city
-- if @location.state
-  %p
-    %b State:
-    = @location.state
-- if @location.postal_code
-  %p
-    %b Postal code:
-    = @location.postal_code
-- if @location.country
-  %p
-    %b Country:
-    = @location.country
+    - if @location.street_address
+      %p
+        %b Street address:
+        = @location.street_address
+    - if @location.cross_street
+      %p
+        %b Cross street:
+        = @location.cross_street
+    - if @location.city
+      %p
+        %b City:
+        = @location.city
+    - if @location.state
+      %p
+        %b State:
+        = @location.state
+    - if @location.postal_code
+      %p
+        %b Postal code:
+        = @location.postal_code
+    - if @location.country
+      %p
+        %b Country:
+        = @location.country
     
-- if @location.posts.count > 0
-  #sessions_list
-    %p 
-      %b Sessions:
-    %ul 
-    - @location.posts.each do |post|
-      %li
-        = link_to post.created_at.to_s(:short)+': "'+post.description+'" (@'+post.user.nickname+')', post_path(post)
         
-#location_detail      
-  = render 'map'
+  .span6
+    #single_location{:location_id => "#{@location.id}"}
 
--if current_user
-  = link_to 'Edit', edit_location_path(@location)
-  \|
-= link_to 'Back', locations_path
+.row
+  .span12
+    - if @location.posts.count > 0
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th When
+            %th What
+            %th Orgnizer
+            %th Attendees
+            
+        %tbody
+          - @location.posts.each do |post|
+            %tr
+              %td
+                = time_ago_in_words(link_to post.created_at)
+                ago
+              %td
+                = link_to post.description, post_path(post)
+              %td
+                = link_to '@'+post.user.nickname, user_path(post.user)
+              %td
+                = post.attendances.count+1
+                
+.row
+  .span8
+    -if current_user
+      = link_to 'Edit', edit_location_path(@location)
+      \|
+    = link_to 'Back', locations_path
