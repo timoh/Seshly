@@ -2,15 +2,21 @@
 
 - if @twitter.length > 0
   %h2 Listing tweets
-  %ul
-    - @twitter.each do |tweet|
-      %li 
-        
-        = link_to '@'+tweet.from_user, 'http://www.twitter.com/'+tweet.from_user
-        tweeted: 
-        %i
-          = link_to tweet.text, 'http://www.twitter.com/'+tweet.from_user+'/status/'+tweet.id.to_s
-        #{time_ago_in_words(tweet.created_at)} ago
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %th User
+        %th Tweet
+        %th When
+    %tbody
+      - @twitter.each do |tweet|
+        %tr
+          %td
+            = link_to '@'+tweet.from_user, 'http://www.twitter.com/'+tweet.from_user
+          %td
+            = link_to tweet.text, 'http://www.twitter.com/'+tweet.from_user+'/status/'+tweet.id.to_s
+          %td
+            #{time_ago_in_words(tweet.created_at)} ago
 
 %table.table.table-striped.table-bordered
   %tr
