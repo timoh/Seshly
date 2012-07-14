@@ -24,7 +24,6 @@ gem "bootstrap-sass"
 gem "simple_form"
 gem "country_select"
 gem "will_paginate_mongoid"
-gem 'gmaps4rails'
 
 group :development, :test do
   gem "rspec"

@@ -15,5 +15,9 @@ class Location
   field :lng, :type => Float
   
   has_many :posts
+
+  def gmaps_address
+    "#{self.street_address}, #{self.city}, #{self.country}" 
+  end
   
 end
