@@ -4,12 +4,18 @@
   %h2 Listing tweets
   %ul
     - @twitter.each do |tweet|
-      %li #{tweet}
+      %li 
+        
+        = link_to '@'+tweet.from_user, 'http://www.twitter.com/'+tweet.from_user
+        tweeted: 
+        %i
+          = link_to tweet.text, 'http://www.twitter.com/'+tweet.from_user+'/status/'+tweet.id.to_s
+        #{time_ago_in_words(tweet.created_at)} ago
 
-%table
+%table.table.table-striped.table-bordered
   %tr
+    %th Posted
     %th Description
-    %th Short url
     %th Author
     %th
     %th
@@ -17,9 +23,12 @@
 
   - @posts.each do |post|
     %tr
+      %td
+        = time_ago_in_words(post.created_at)
+        ago
       %td= post.description
-      %td= post.short_url
-      %td= post.user.nickname
+      %td
+        = link_to post.user.nickname, user_path(post.user)
       %td= link_to 'Show', post
       %td= link_to 'Edit', edit_post_path(post)
       %td= link_to 'Destroy', post, :data => { :confirm => 'Are you sure?' }, :method => :delete

@@ -12,7 +12,10 @@
       - @posts.each do |post|
         %tr
           %td
-            = post.created_at.to_s(:short)
+            %i
+              posted
+              = time_ago_in_words(post.created_at)
+              ago
           %td
             %img{:src => "#{post.user.image if post.user.image} "}
             = link_to post.user.nickname, post.user

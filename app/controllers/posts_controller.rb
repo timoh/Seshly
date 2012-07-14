@@ -5,9 +5,7 @@ class PostsController < ApplicationController
   def index
     @twitter = []
     
-    Twitter.search("#seshly", :rpp => 3, :result_type => "recent").results.map do |status|
-        @twitter.push ("#{status.from_user}: #{status.text}")
-    end
+    @twitter = Twitter.search("#seshly", :rpp => 3, :result_type => "recent").results
     
       @posts = Post.all
 
