@@ -18,7 +18,7 @@
               ago
           %td
             %img{:src => "#{post.user.image if post.user.image} "}
-            = link_to post.user.nickname, post.user
+            = link_to '@'+post.user.nickname, post.user
             
           %td 
             %blockquote
