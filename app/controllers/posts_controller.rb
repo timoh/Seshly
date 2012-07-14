@@ -46,6 +46,23 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    foursquare_id = params[:post][:foursquare_id]
+    
+    if foursquare_id
+      if current_user.foursq_token
+        if current_user.foursq_token.length > 0
+          if foursquare_id.length > 0
+            venue = Fetchvenue.with_id(foursquare_id)
+            raise venue
+          end
+         else
+          redirect_to foursquare.authorize_url(ENV['DOMAIN_URL']+"/location_search/save_token")
+        end
+      else
+        redirect_to foursquare.authorize_url(ENV['DOMAIN_URL']+"/location_search/save_token")
+    end
+  
+    
     @post = Post.new(params[:post])
     raise 'NO CURRENT USER SET!' if current_user == nil
     raise 'CURRENT USER NAME NOT VALID!' if current_user.name.length < 3
