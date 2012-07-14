@@ -60,6 +60,7 @@ class PostsController < ApplicationController
         end
       else
         redirect_to foursquare.authorize_url(ENV['DOMAIN_URL']+"/location_search/save_token")
+      end
     end
   
     
