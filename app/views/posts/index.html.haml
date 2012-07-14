@@ -1,5 +1,11 @@
 %h1 Listing sessions
 
+- if @twitter.length > 0
+  %h2 Listing tweets
+  %ul
+    - @twitter.each do |tweet|
+      %li #{tweet}
+
 %table
   %tr
     %th Description

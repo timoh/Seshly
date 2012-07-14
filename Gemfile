@@ -13,6 +13,7 @@ gem "therubyracer", :group => :assets, :platform => :ruby
 gem 'foursquare'
 gem 'quimby'
 #gem 'base58'
+gem 'twitter'
 
 gem 'jquery-rails'
 gem "haml"

@@ -3,7 +3,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @twitter = []
+    
+    Twitter.search("#seshly", :rpp => 3, :result_type => "recent").results.map do |status|
+        @twitter.push ("#{status.from_user}: #{status.text}")
+    end
+    
+      @posts = Post.all
 
     respond_to do |format|
       format.html # index.html.erb
