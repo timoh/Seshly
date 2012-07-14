@@ -2,31 +2,42 @@
 
 %p
   %b Name:
-  = link_to @location.name, @location.url_to_fsq
-%p
-  %b Street address:
-  = @location.street_address
-%p
-  %b Cross street:
-  = @location.cross_street
-%p
-  %b City:
-  = @location.city
-%p
-  %b State:
-  = @location.state
-%p
-  %b Postal code:
-  = @location.postal_code
-%p
-  %b Country:
-  = @location.country
-%p
-  %b Lat:
-  = @location.lat
-%p
-  %b Lng:
-  = @location.lng
+  - if @location.url_to_fsq
+    = link_to @location.name, @location.url_to_fsq
+  - else
+    = @location.name
+- if @location.street_address
+  %p
+    %b Street address:
+    = @location.street_address
+- if @location.cross_street
+  %p
+    %b Cross street:
+    = @location.cross_street
+- if @location.city
+  %p
+    %b City:
+    = @location.city
+- if @location.state
+  %p
+    %b State:
+    = @location.state
+- if @location.postal_code
+  %p
+    %b Postal code:
+    = @location.postal_code
+- if @location.country
+  %p
+    %b Country:
+    = @location.country
+- if @location.lat    
+  %p
+    %b Lat:
+    = @location.lat
+- if @location.lng   
+  %p
+    %b Lng:
+    = @location.lng
 
 -if current_user
   = link_to 'Edit', edit_location_path(@location)

@@ -85,7 +85,7 @@ class PostsController < ApplicationController
               new_loc.save!
               
               #join new location to the post
-              @post.location = new_low
+              @post.location = new_loc
             else
               #otherwise, just link the existing location to the post
               @post.location = location

@@ -5,7 +5,7 @@
   = link_to @post.user.nickname, @post.user
   on #{@post.created_at.to_s(:long)} 
   - if @post.location != nil
-    %a{:href => "#{@post}"}
+    %a{:href => "#{location_path(@post.location)}"}
       at #{@post.location.name}
   - elsif @post.latitude && @post.longitude
     at coordinates
