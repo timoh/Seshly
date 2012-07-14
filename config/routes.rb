@@ -4,6 +4,7 @@ Seshly::Application.routes.draw do
   resources :users
   resources :posts
   resources :locations
+  resources :venues, :only => 'index'
   
   match '/location_search' => "location_search#index"
   match '/location_search/save_token' => "location_search#save_token"
