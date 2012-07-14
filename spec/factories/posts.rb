@@ -2,7 +2,9 @@
 
 FactoryGirl.define do
   factory :post do
-    description "MyText"
-    short_url "MyString"
+    description "Sessarii"
+    short_url "asd123"
+    latitude 60.23532878799999
+    longitude 24.84594761799999 
   end
 end

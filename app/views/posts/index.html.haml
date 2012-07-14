@@ -35,7 +35,7 @@
         ago
         
       %td
-        = link_to '@'+post.user.nickname, user_path(post.user)
+        = link_to '@'+post.owner.nickname, user_path(post.owner)
       %td= post.description
       
       %td= link_to 'Show', post

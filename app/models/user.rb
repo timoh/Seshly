@@ -12,6 +12,7 @@ class User
   attr_accessible :provider, :uid, :name, :email, :nickname
   
   has_many :posts
+  has_many :attendances
 
   def self.create_with_omniauth(auth)
     create! do |user|

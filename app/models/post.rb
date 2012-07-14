@@ -7,7 +7,9 @@ class Post
   field :longitude, :type => Float
   
   belongs_to :location
+  
   belongs_to :user
+  has_many :attendances
   
   validates_associated :user
   #validates_uniqueness_of :short_url

@@ -15,8 +15,10 @@ describe HomeController do
   
   describe "content" do
     it "should include posts" do
+      user = FactoryGirl.create(:user)
+      FactoryGirl.create(:post, :user => user)
       visit root_path
-      page.should have_content("Posts")
+      page.should have_content("sessions")
     end
   end
 
