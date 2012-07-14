@@ -13,4 +13,9 @@ class Post
   #validates_uniqueness_of :short_url
   validates_presence_of [:description, :user]
   
+  def self.latest
+    self.all(sort: [[ :created_at, :desc ]], limit: 5)
+  end
+
+  
 end

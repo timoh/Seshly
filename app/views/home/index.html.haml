@@ -1,14 +1,18 @@
-%h2 Most recent sessions nearby
+%h1 Most recent sessions nearby
 - if @posts.length > 0
   %table.table.table-striped
     %thead
       %tr
+        %th When
         %th Author
         %th Post
+        %th Location
         %th
     %tbody
       - @posts.each do |post|
         %tr
+          %td
+            = post.created_at.to_s(:short)
           %td
             %img{:src => "#{post.user.image if post.user.image} "}
             = link_to post.user.nickname, post.user
@@ -16,6 +20,11 @@
           %td 
             %blockquote
               #{post.description}
+              
+              
+          %td 
+            - if post.location
+              = link_to post.location.name, post_path(post)
           %td 
             =link_to 'See more..', post
 - else

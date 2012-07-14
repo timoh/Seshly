@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
     @users = User.all
-    @posts = Post.all
+    @posts = Post.latest
   end
 end
