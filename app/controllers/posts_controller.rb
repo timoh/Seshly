@@ -62,11 +62,24 @@ class PostsController < ApplicationController
             venue = Fetchvenue.with_id(foursquare_id, current_user.foursq_token)
             
             #if a location with this foursq_id doesn't exists..
-            location = Location.where(foursq_id: venue.json.id).first
+            location = Location.where(foursq_id: venue.id).first
             if location == nil
               
               #create a new location
-              new_loc = Location.create!(:name => venue.json.name, :lat => venue.json.location.lat, :lng => venue.json.location.lng, :street_address => venue.json.location.address, :country => venue.json.location.country)
+              new_loc = Location.new(:foursq_id => venue.id, :name => venue.name, :lat => venue.location.lat, :lng => venue.location.lng)
+              
+              #additional attributes // refactor this to a model!
+              if venue.location.respond_to?('address')
+                new_loc.street_address = venue.location.address
+              end
+              
+              if venue.location.respond_to?('city')
+                new_loc.city = venue.location.city
+              end
+              
+              if venue.location.respond_to?('country')
+                new_loc.country = venue.location.country
+              end
               
               #add other attributes later
               new_loc.save!
