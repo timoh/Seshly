@@ -4,12 +4,14 @@
     %meta{:charset => "utf-8"}
     %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %meta{:content => "initial-scale=1.0, user-scalable=no", :name => "viewport"}
     %title= content_for?(:title) ? yield(:title) : "Seshly"
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"
     = javascript_include_tag "application"
+    = javascript_include_tag 'http://maps.googleapis.com/maps/api/js?key=AIzaSyC1T5ttMfbedntdzzFu_0Ejo0MJFDC8wLw&sensor=true'
     = csrf_meta_tags
     = yield(:head)
   %body
