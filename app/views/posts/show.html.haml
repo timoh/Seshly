@@ -1,21 +1,29 @@
 %p#notice= notice
 
-%p
+%h1
   %img{:src => "#{@post.user.image if @post.user.image} "}
   = link_to @post.user.nickname, @post.user
-  on #{@post.created_at.to_s(:long)} 
+  sesh'd at
   - if @post.location != nil
     %a{:href => "#{location_path(@post.location)}"}
-      at #{@post.location.name}
+      #{@post.location.name}
   - elsif @post.latitude && @post.longitude
     at coordinates
     %i #{@post.latitude}, #{@post.longitude}
-
 %p
+  %i
+    posted
+    = time_ago_in_words(@post.created_at)
+    ago
+  
+%h4
   %blockquote.well
+    &quot;
     = @post.description
 
 - if current_user
   = link_to 'Edit', edit_post_path(@post)
   \|
 = link_to 'Back', posts_path
+
+= render 'map'
