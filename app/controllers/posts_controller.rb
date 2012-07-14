@@ -47,6 +47,12 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    @post = Post.new(params[:post])
+    raise 'NO CURRENT USER SET!' if current_user == nil
+    raise 'CURRENT USER NAME NOT VALID!' if current_user.name.length < 3
+    
+    @post.user = current_user
+    
     foursquare_id = params[:post][:foursquare_id]
     
     if foursquare_id
@@ -54,7 +60,24 @@ class PostsController < ApplicationController
         if current_user.foursq_token.length > 0
           if foursquare_id.length > 0
             venue = Fetchvenue.with_id(foursquare_id, current_user.foursq_token)
-            logger.info venue.to_yaml
+            
+            #if a location with this foursq_id doesn't exists..
+            location = Location.where(foursq_id: venue.json.id).first
+            if location == nil
+              
+              #create a new location
+              new_loc = Location.create!(:name => venue.json.name, :lat => venue.json.location.lat, :lng => venue.json.location.lng, :street_address => venue.json.location.address, :country => venue.json.location.country)
+              
+              #add other attributes later
+              new_loc.save!
+              
+              #join new location to the post
+              @post.location = new_low
+            else
+              #otherwise, just link the existing location to the post
+              @post.location = location
+            end
+              
           end
          else
           redirect_to foursquare.authorize_url(ENV['DOMAIN_URL']+"/location_search/save_token")
@@ -64,11 +87,8 @@ class PostsController < ApplicationController
       end
     end  
     
-    @post = Post.new(params[:post])
-    raise 'NO CURRENT USER SET!' if current_user == nil
-    raise 'CURRENT USER NAME NOT VALID!' if current_user.name.length < 3
     
-    @post.user = current_user
+    
 
     respond_to do |format|
       if @post.save

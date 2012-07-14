@@ -29,7 +29,7 @@ function post_geolocate() {
 	}
 }
 
-function fetch_locations(query, access_token) {
+function fetch_venues(query, access_token) {
 	$.ajax('/venues.json', {
 		data: { location: query, access_token: access_token },
 		cache: false, 
@@ -43,14 +43,42 @@ function fetch_locations(query, access_token) {
 	});
 }
 
+function fetch_locations() {
+	$.ajax('/locations.json', {
+		cache: false, 
+		success: function(results) {
+			console.log(results);
+			for (i=0; i<results.length; i++ ) {
+				$('#location-results').append('<li class="location-selector"><a href="#" id="'+results[i].json.id+'">'+results[i].json.name+', '+results[i].json.location.address+'</a></li>')	
+			}
+			
+		}
+	});
+}
+
+function hilight_active(){
+	e.preventDefault();
+	$('.location-selector').removeClass('active');
+	$(this).addClass('active');
+}
+
+function remember_selection(selection){
+	kyseinen = $(selection).attr('id');
+	$('#foursquare_id').val(kyseinen);
+}
+
 function handle_location_selection(){
 	$('#location-results').on("click", ".location-selector a", function(e){
 		e.preventDefault();
-		kyseinen = $(this).attr('id');
-		$('#foursquare_id').val(kyseinen);
+		$('.location-selector').removeClass('active');
+		$(this).addClass('active');
+		fetch_locations();
+		remember_selection(this);
+		hilight_active();
 	});
 }
-		
+
+
 
 function add_location_search() {
 	$('#add-location').slideUp('slow');
@@ -61,7 +89,7 @@ function add_location_search() {
 		query = $('#location-query').val();
 		$('#location-results').html('');
 		access_token = $('#access_token-field').val();
-		fetch_locations(query, access_token);
+		fetch_venues(query, access_token);
 		handle_location_selection();
 	});	
 }
