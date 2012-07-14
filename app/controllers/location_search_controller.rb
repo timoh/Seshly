@@ -16,6 +16,12 @@ class LocationSearchController < ApplicationController
         # any way to sanitize input??
         @fsq_locs = search_venue(params[:location])
         @location = Location.where(name: /#{params[:location]}/i) || []
+        
+        respond_to do |format|
+          format.html
+          format.json { render json: @fsq_locs }
+        end
+        
       end
       
     # you cannot use the location search without signing in!  

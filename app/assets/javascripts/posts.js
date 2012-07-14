@@ -27,4 +27,28 @@ function post_geolocate() {
 	} else {
 	  // error('not supported');
 	}
+}
+
+function fetch_locations(query) {
+	$.ajax('/locations.json', {
+		data: { name: query },
+		cache: false, 
+		success: function(results) {
+			console.log(results[0].name);
+			for (result in results) {
+				$('#location-search-submit').after(result.name);	
+			}
+			
+		}
+	});
 }		
+
+function add_location_search() {
+	$('#add-location').slideUp('slow');
+	$('#add-location').after('<input type="text" id="location-query" placeholder="search for a location"></input><a href="/" class="btn btn-success" id="location-search-submit">Search</a>');
+	$('#location-search-submit').click(function(e){
+		e.preventDefault();
+		query = $('#location-query').val();
+		fetch_locations(query);
+	});	
+}
