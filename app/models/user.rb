@@ -9,6 +9,7 @@ class User
   field :image, :type => String
   field :description, :type => String
   field :foursq_token, :type => String
+  field :admin, :type => Boolean
   attr_accessible :provider, :uid, :name, :email, :nickname
   
   has_many :posts

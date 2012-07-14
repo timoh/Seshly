@@ -2,9 +2,10 @@
 
 %h1
   %img{:src => "#{@post.user.image if @post.user.image} "}
-  = link_to @post.user.nickname, @post.user
-  sesh'd at
-  - if @post.location != nil
+  = link_to '@'+@post.user.nickname, @post.user
+  sesh'd
+  - if @post.location
+    at
     %a{:href => "#{location_path(@post.location)}"}
       #{@post.location.name}
   - elsif @post.latitude && @post.longitude
@@ -15,15 +16,56 @@
     posted
     = time_ago_in_words(@post.created_at)
     ago
-  
-%h4
-  %blockquote.well
-    &quot;
-    = @post.description
-
-- if current_user
-  = link_to 'Edit', edit_post_path(@post)
-  \|
-= link_to 'Back', posts_path
-
-= render 'map'
+.row
+  .span8  
+    %h4
+      %blockquote.well
+        &quot;
+        = @post.description
+    
+    
+    %p 
+      %b Who else is going?
+      
+    - if @post.attendances.size > 0
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr 
+            %th
+            %th Who
+            %th Time announced
+        - @post.attendances.each do |attendee|
+          %tr
+            %td
+              %img{:src => "#{attendee.user.image if attendee.user.image} "}
+            %td
+              =link_to '@'+attendee.user.nickname, user_path(attendee.user) 
+            %td
+              = time_ago_in_words(attendee.created_at)
+              ago
+    - else 
+      %p.well Be the first to attend!
+    
+    - if current_user.attendances.includes(@post.attendances).length > 0
+      %a.btn.btn-primary#attend{:href => '/unattend/'+current_user.attendances.where(:post_id => @post.id).first.id.to_s} Bail out!
+    -else
+      - if @post.user != current_user
+        %a.btn.btn-primary#attend{:href => '/attend/'+@post.id.to_s} Attend! 
+    
+  - if @post.location
+    .span4
+      %p
+        %b
+          = link_to @post.location.name, location_path(@post.location)
+        %br
+        = @post.location.city
+        \-
+        = @post.location.country
+      #single_location{:location_id => "#{@post.location.id}"}
+    
+.row
+  .span4
+    - if current_user
+      = link_to 'Edit', edit_post_path(@post)
+      \|
+    = link_to 'Back', posts_path

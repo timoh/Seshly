@@ -9,9 +9,9 @@
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
     = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag 'http://maps.googleapis.com/maps/api/js?key=AIzaSyC1T5ttMfbedntdzzFu_0Ejo0MJFDC8wLw&sensor=true'
     = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"
     = javascript_include_tag "application"
-    = javascript_include_tag 'http://maps.googleapis.com/maps/api/js?key=AIzaSyC1T5ttMfbedntdzzFu_0Ejo0MJFDC8wLw&sensor=true'
     = csrf_meta_tags
     = yield(:head)
   %body

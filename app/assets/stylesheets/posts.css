@@ -2,3 +2,8 @@
 	font-weight: bold;
 	background-color: white;
 }
+
+#single_location{
+  min-width: 200px;
+  height: 200px;
+}

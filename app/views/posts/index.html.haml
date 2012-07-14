@@ -22,9 +22,9 @@
 %table.table.table-striped.table-bordered
   %tr
     %th Posted
-    %th Author
-    %th Description
-    %th
+    %th User
+    %th Message
+    %th Attending
     %th
     %th
 
@@ -35,10 +35,10 @@
         ago
         
       %td
-        = link_to '@'+post.owner.nickname, user_path(post.owner)
-      %td= post.description
-      
-      %td= link_to 'Show', post
+        = link_to '@'+post.user.nickname, user_path(post.user)
+      %td
+        = link_to post.description, post_path(post)
+      %td= post.attendances.count+1
       %td= link_to 'Edit', edit_post_path(post)
       %td= link_to 'Destroy', post, :data => { :confirm => 'Are you sure?' }, :method => :delete
 
