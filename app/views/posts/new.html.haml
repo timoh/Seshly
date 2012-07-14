@@ -1,5 +1,7 @@
 %h1 Tell about your sesh!
 
+%input{:id => 'access_token-field', :type => 'hidden', :value => @token}
+
 = link_to 'Add a location', new_location_path, :class => 'btn btn-success', :id => 'add-location'
 
 :javascript

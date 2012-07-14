@@ -28,12 +28,13 @@ class PostsController < ApplicationController
     if !current_user
       redirect_to '/auth/twitter'
     else
-      @post = Post.new
+        @token = current_user.foursq_token
+        @post = Post.new
 
-      respond_to do |format|
-        format.html # new.html.erb
-        format.json { render json: @post }
-      end
+        respond_to do |format|
+          format.html # new.html.erb
+          format.json { render json: @post }
+        end
     end
     
   end
@@ -53,7 +54,7 @@ class PostsController < ApplicationController
         if current_user.foursq_token.length > 0
           if foursquare_id.length > 0
             venue = Fetchvenue.with_id(foursquare_id, current_user.foursq_token)
-            raise venue
+            logger.info venue.to_yaml
           end
          else
           redirect_to foursquare.authorize_url(ENV['DOMAIN_URL']+"/location_search/save_token")
@@ -61,8 +62,7 @@ class PostsController < ApplicationController
       else
         redirect_to foursquare.authorize_url(ENV['DOMAIN_URL']+"/location_search/save_token")
       end
-    end
-  
+    end  
     
     @post = Post.new(params[:post])
     raise 'NO CURRENT USER SET!' if current_user == nil

@@ -29,9 +29,9 @@ function post_geolocate() {
 	}
 }
 
-function fetch_locations(query) {
-	$.ajax('/locations.json', {
-		data: { location: query },
+function fetch_locations(query, access_token) {
+	$.ajax('/venues.json', {
+		data: { location: query, access_token: access_token },
 		cache: false, 
 		success: function(results) {
 			for (i=0; i<results.length; i++ ) {
@@ -59,7 +59,8 @@ function add_location_search() {
 		e.preventDefault();
 		query = $('#location-query').val();
 		$('#location-results').html('');
-		fetch_locations(query);
+		access_token = $('#access_token-field').val();
+		fetch_locations(query, access_token);
 		handle_location_selection();
 	});	
 }
