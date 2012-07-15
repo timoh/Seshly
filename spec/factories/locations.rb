@@ -13,5 +13,6 @@ FactoryGirl.define do
     country "Finland"
     lat 60.161977496360954
     lng 24.952762126922607
+    posts_count 0
   end
 end

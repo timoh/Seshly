@@ -15,7 +15,7 @@
         = link_to location.name, location_path(location)
       %td= location.street_address
       %td= location.city
-      %td= location.posts.count
+      %td= location.posts_count
       - if current_user && current_user.admin?
         %td= link_to '[ x ]', location, :data => { :confirm => 'Are you sure?' }, :method => :delete
 

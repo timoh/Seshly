@@ -19,6 +19,11 @@ class Location
   field :lat, :type => Float
   field :lng, :type => Float
   
+  field :posts_count, :type => Integer, default: 0
+  before_update :count_posts
+  
+  has_many :posts
+  
   # for geocoding, return an array of coordinates
   def coordinates
     coordinates = Array.new
@@ -34,11 +39,13 @@ class Location
     address = "#{self.street_address}, #{self.city}, #{self.country}"
     
   end
-  
-  has_many :posts
 
   def gmaps_address
     "#{self.street_address}, #{self.city}, #{self.country}" 
+  end
+  
+  def count_posts
+    self.posts_count = self.posts.count
   end
   
 end
