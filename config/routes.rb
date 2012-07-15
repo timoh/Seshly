@@ -6,6 +6,8 @@ Seshly::Application.routes.draw do
   resources :locations
   resources :venues, :only => 'index'
   
+  match '/geocoder_test' => 'locations#geocoder_test'
+  
   match '/attend/:id' => 'attendances#create'
   match '/unattend/:id' => 'attendances#destroy'
   

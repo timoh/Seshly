@@ -9,11 +9,8 @@
     %a{:href => "#{location_path(@post.location)}"}
       #{@post.location.name}
   - elsif @post.coordinates
-    = Geocoder.search(@post.coordinates).first.data.first[1].first
-    -#at coordinates
-    -#%i #{@post.latitude}, #{@post.longitude}
-  - else 
-    %p No location data found!
+    = ManualGeocoder.geocode(@post.coordinates)
+    
 %p
   %i
     posted

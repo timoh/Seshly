@@ -1,5 +1,20 @@
 class LocationsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
+  
+  
+  def geocoder_test
+    
+    @json = Array.new
+    Post.each do |post|
+    @json << ManualGeocoder.geocode(post.coordinates)
+    end
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @json }
+    end
+  end
+  
   # GET /locations
   # GET /locations.json
   def index
