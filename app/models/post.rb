@@ -33,7 +33,7 @@ class Post
   end
   
   def self.latest
-    self.all.sort(created_at: 1).limit(5)
+    self.all.sort(created_at: -1).limit(5)
   end
 
   

@@ -9,7 +9,7 @@
     - if current_user && current_user.admin?
       %th Remove location
 
-  - @locations.each do |location|
+  - @locations.sort(posts: 1).each do |location|
     %tr
       %td
         = link_to location.name, location_path(location)
