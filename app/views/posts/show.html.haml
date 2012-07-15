@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag "gmap_single_location"
+
 %p#notice= notice
 
 %h1
@@ -46,7 +49,13 @@
                 ago
                 
       - else 
-        %p.well Be the first to attend!
+        - if current_user != @post.user
+          %p.well Be the first to attend!
+        - else
+          %p.well 
+            Let your friends know you're going! 
+            %b
+              = link_to 'Post this to Twitter!', '/post_to_twitter/'+@post.id.to_s
       
     
     - if current_user
@@ -57,17 +66,21 @@
           %a.btn.btn-primary#attend{:href => '/attend/'+@post.id.to_s} Attend!
     
 
-    
+  .span4
   - if @post.location
-    .span4
-      %p
-        %b
-          = link_to @post.location.name, location_path(@post.location)
+    %p
+      %b
+        = link_to @post.location.name, location_path(@post.location)
         %br
         = @post.location.city
         \-
         = @post.location.country
-      #single_location{:location_id => "#{@post.location.id}"}
+    #single_location{:location_id => "#{@post.location.id}"}
+  - elsif @post.coordinates
+    %p
+      %b
+        = ManualGeocoder.geocode_full(@post.coordinates)
+    #single_location{:latitude => "#{@post.coordinates[0]}", :longitude => "#{@post.coordinates[1]}"}
     
 .row
   .span4
