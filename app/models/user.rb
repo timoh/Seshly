@@ -9,7 +9,8 @@ class User
   field :image, :type => String
   field :description, :type => String
   field :foursq_token, :type => String
-  field :admin, :type => Boolean
+  field :admin, :type => Boolean, default: false
+  field :singup_email_sent, :type => Boolean, default: false
   attr_accessible :provider, :uid, :name, :email, :nickname
   
   has_many :posts
