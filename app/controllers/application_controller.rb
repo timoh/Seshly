@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
   helper_method :correct_user?
 
   private
+  
+    def send_notification(user)
+      if !user.singup_email_sent
+        Notificator.registration_confirmation(user).deliver
+        user.singup_email_sent = true
+        user.save!
+      end
+    end
+  
     def current_user
       begin
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
