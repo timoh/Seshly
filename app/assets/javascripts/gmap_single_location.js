@@ -1,8 +1,12 @@
-console.log('gmap_single_location loaded');
-
 jQuery(document).ready(function($) {
 
-	var locationId = $('#single_location').attr('location_id');
+console.log('gmap_single_location loaded');
+  
+	var locationId = $('#single_location').attr('location_id'); // if using FQsq Location
+
+  var u_latitude = parseFloat($('#single_location').attr('latitude')); // if using pure coordinates
+	var u_longitude = parseFloat($('#single_location').attr('longitude'));
+
 	var singleLatLng = new google.maps.LatLng(0.0, 0.0);
 
 	function drawMap(LatLng){
@@ -22,14 +26,27 @@ jQuery(document).ready(function($) {
 		});
 	}
 	
-	$.ajax('/locations/'+locationId+'.json', {
-		cache: false, 
-		success: function(results) {
-			singleLatLng = new google.maps.LatLng(results.lat, results.lng);
-			drawMap(singleLatLng);
-		}
-	});
+	function fetchLocation(){
+	  $.ajax('/locations/'+locationId+'.json', {
+  		cache: false, 
+  		success: function(results) {
+  			singleLatLng = new google.maps.LatLng(results.lat, results.lng);
+  			drawMap(singleLatLng);
+  		}
+  	});
+	}
+	
+	
+	// main function
+	
+	if(locationId){
+  	fetchLocation();
+	} else {
+	  singleLatLng = new google.maps.LatLng(u_latitude, u_longitude);
+	  drawMap(singleLatLng);
+	}
 	
 });
+
 
 
