@@ -12,20 +12,7 @@ test:
       hosts:
         - localhost:27017
         
-# production:
-#   sessions:
-#     default:
-#       uri: <%= ENV['MONGOHQ_URL'] %>
-      
-      
-<% if ENV['MONGOHQ_URL'] %>
-  <% uri = URI.parse(ENV['MONGOHQ_URL']) %>
 production:
   sessions:
     default:
-      database: <%= uri.path.sub('/','') %>
-      username: <%= uri.user %>
-      password: <%= uri.password %>
-      hosts:
-        - <%= uri.host %>:<%= uri.port %>
-<% end %>
+      uri: <%= ENV['MONGOHQ_URL'] %>
