@@ -11,7 +11,7 @@ class Notificator < ActionMailer::Base
     @attending_user = attending_user
     @to_user = to_user
     @post = post
-    mail(:to => "#{user.name} <#{user.email}>", :subject => "A new attendee to your post #{@post.description}")
+    mail(:to => "#{@to_user.name} <#{@to_user.email}>", :subject => "A new attendee to your post "+@post.description)
   end
   
 end
