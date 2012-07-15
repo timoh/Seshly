@@ -97,5 +97,8 @@ describe PostsController do
       
     end
   end
+  
+  
+  context '#show'
 
 end

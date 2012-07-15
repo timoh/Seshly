@@ -45,20 +45,16 @@
                 = time_ago_in_words(attendee.created_at)
                 ago
                 
-    - else 
-      %p.well Be the first to attend!
+      - else 
+        %p.well Be the first to attend!
       
     
     - if current_user
-      - if current_user.attendances  
-        - if current_user.attendances.includes(@post.attendances).length > 0
-          %a.btn.btn-primary#attend{:href => '/unattend/'+current_user.attendances.where(:post_id => @post.id).first.id.to_s} Bail out!
-        -else
-          - if @post.user != current_user
-            %a.btn.btn-primary#attend{:href => '/attend/'+@post.id.to_s} Attend! 
+      - if current_user.already_attending?(@post)
+        %a.btn.btn-primary#attend{:href => '/unattend/'+@post.id.to_s} Bail out!
       -else
         - if @post.user != current_user
-          %a.btn.btn-primary#attend{:href => '/attend/'+@post.id.to_s} Attend! 
+          %a.btn.btn-primary#attend{:href => '/attend/'+@post.id.to_s} Attend!
     
 
     

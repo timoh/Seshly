@@ -28,5 +28,15 @@ class User
       end
     end
   end
+  
+  def already_attending?(post)
+    attendance_for_this_event = self.attendances.includes(post.attendances)
+    
+    if attendance_for_this_event.length > 0
+      return true 
+    else
+      return false
+    end
+  end
 
 end

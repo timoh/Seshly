@@ -25,9 +25,8 @@ class AttendancesController < ApplicationController
   
   def destroy
     if current_user
-      @attendance = Attendance.find(params[:id])
-      post = @attendance.post
-      @attendance.destroy
+      post = Post.find(params[:id])
+      post.attendances.includes(current_user.attendances).destroy
 
       respond_to do |format|
         format.html { redirect_to post_path(post), notice: 'You bailing out was successfully recorded!' }
