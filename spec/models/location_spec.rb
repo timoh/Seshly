@@ -14,6 +14,22 @@ describe Location do
       @location.should == @original_location
     end
     
+    describe 'geolocation' do
+      
+      it 'should return coordinates' do
+        location = FactoryGirl.create(:location, :lat => 20.0, :lng => 30.0)
+        location.coordinates[0].should == 20.0
+        location.coordinates[1].should == 30.0
+      end
+      
+      it 'should return address' do
+        location = FactoryGirl.create(:location, :street_address => 'Helsinginkatu 10', :city => 'Helsinki', :country => 'Finland')
+        location.address.should == 'Helsinginkatu 10, Helsinki, Finland'
+      end
+      
+      
+    end
+    
     describe 'and regexp' do
       
       before do
