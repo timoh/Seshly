@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails'
+gem "mongoid", :git => "git@github.com:mongoid/mongoid.git"
 
 group :assets do
   gem 'sass-rails'
@@ -19,7 +20,6 @@ gem 'geocoder'
 gem 'jquery-rails'
 gem "haml"
 gem "bson_ext"
-gem "mongoid"
 gem "omniauth"
 gem "omniauth-twitter"
 gem "bootstrap-sass"
