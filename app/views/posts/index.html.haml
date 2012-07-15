@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag "gmap_multi_location"
+
 %h1 Listing sessions
 
 - if @twitter.length > 0

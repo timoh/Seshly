@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag "new_post_location"
+
 %h1 Tell about your sesh!
 
 %input{:id => 'access_token-field', :type => 'hidden', :value => @token}
