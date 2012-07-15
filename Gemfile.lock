@@ -261,7 +261,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   machinist
-  mongoid (>= 3.0.0)
+  mongoid
   mongoid-rspec
   omniauth
   omniauth-twitter
