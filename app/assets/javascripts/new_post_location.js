@@ -1,3 +1,5 @@
+console.log('new_post_location loaded');
+
 var latitude = "", longitude = "";
 
 function post_values(latitude, longitude) {

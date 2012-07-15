@@ -1,3 +1,5 @@
+console.log('gmap_single_location loaded');
+
 jQuery(document).ready(function($) {
 
 	var locationId = $('#single_location').attr('location_id');
