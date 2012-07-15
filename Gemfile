@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem "mongoid", "3.0.0.rc"
+gem "mail"
+gem 'thin'
+
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
