@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails'
-gem "mongoid", :git => "git@github.com:mongoid/mongoid.git"
-
+gem "mongoid", "3.0.0.rc"
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
