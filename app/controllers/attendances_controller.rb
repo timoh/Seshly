@@ -8,6 +8,7 @@ class AttendancesController < ApplicationController
       
       respond_to do |format|
         if @attendance.save
+          notify_attendance(post.user, user, post)
           format.html { redirect_to post_path(post), notice: 'Your attendance was successfully recorded!' }
         else
           redirect_to post_path(post)
