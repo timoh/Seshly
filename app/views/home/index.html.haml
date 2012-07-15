@@ -29,6 +29,9 @@
           %td 
             - if post.location
               = link_to post.location.name, post_path(post)
+            - elsif post.coordinates
+              near
+              = ManualGeocoder.geocode_full(post.coordinates)
           %td
             = post.attendee_count+1
           %td 

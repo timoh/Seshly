@@ -27,6 +27,7 @@
     %th Posted
     %th User
     %th Message
+    %th Location
     %th Attending
     %th
     %th
@@ -41,6 +42,12 @@
         = link_to '@'+post.user.nickname, user_path(post.user)
       %td
         = link_to post.description, post_path(post)
+      %td
+        -if post.location
+          = post.location.name
+        -elsif post.coordinates
+          near
+          = ManualGeocoder.geocode_full(post.coordinates)
       %td= post.attendances.count+1
       %td= link_to 'Edit', edit_post_path(post)
       %td= link_to 'Destroy', post, :data => { :confirm => 'Are you sure?' }, :method => :delete
