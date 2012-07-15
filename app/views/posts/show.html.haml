@@ -9,7 +9,8 @@
     %a{:href => "#{location_path(@post.location)}"}
       #{@post.location.name}
   - elsif @post.coordinates
-    = ManualGeocoder.geocode(@post.coordinates)
+    near
+    = ManualGeocoder.geocode_full(@post.coordinates)
     
 %p
   %i
