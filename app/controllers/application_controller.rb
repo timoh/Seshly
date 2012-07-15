@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
   
     def send_notification(user)
-      if !user.singup_email_sent
+      if !user.singup_email_sent && user.email.length > 0
         Notificator.registration_confirmation(user).deliver
         user.singup_email_sent = true
         user.save!
