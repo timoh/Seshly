@@ -15,8 +15,25 @@ class Post
   #validates_uniqueness_of :short_url
   validates_presence_of [:description, :user]
   
+  def coordinates
+    coordinates = Array.new
+    
+    coordinates.push self.latitude
+    coordinates.push self.longitude
+    
+    if self.latitude == nil || self.longitude == nil
+      return false
+    end
+    
+    if self.latitude > 0 && self.longitude > 0
+      return coordinates
+    else
+      return false
+    end
+  end
+  
   def self.latest
-    self.all(sort: [[ :created_at, :desc ]], limit: 5)
+    self.all.sort(created_at: 1).limit(5)
   end
 
   
