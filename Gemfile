@@ -14,17 +14,17 @@ gem 'foursquare'
 gem 'quimby'
 #gem 'base58'
 gem 'twitter'
+gem 'geocoder'
 
 gem 'jquery-rails'
 gem "haml"
 gem "bson_ext"
-gem "mongoid"
+gem "mongoid", ">=3.0.0"
 gem "omniauth"
 gem "omniauth-twitter"
 gem "bootstrap-sass"
 gem "simple_form"
 gem "country_select"
-gem "will_paginate_mongoid"
 
 group :development, :test do
   gem "rspec"
