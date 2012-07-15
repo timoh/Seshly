@@ -1,8 +1,6 @@
 - content_for :head do
   = javascript_include_tag "gmap_single_location"
 
-%p#notice= notice
-
 %h1
   %img{:src => "#{@post.user.image if @post.user.image} "}
   = link_to '@'+@post.user.nickname, @post.user

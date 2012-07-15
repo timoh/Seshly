@@ -8,5 +8,5 @@ ActionMailer::Base.smtp_settings = {
   :enable_starttls_auto => true
 }
 
-ActionMailer::Base.default_url_options[:host] = "sesh-ly.herokuapp.com"
+ActionMailer::Base.default_url_options[:host] = "http://sesh-ly.herokuapp.com/"
 Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
