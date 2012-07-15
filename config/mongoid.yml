@@ -1,16 +1,25 @@
 development:
-  host: localhost
-  database: seshly_development
+  sessions:
+    default:
+      database: seshly_development
+      hosts:
+        - localhost:27017
 
 test:
-  host: localhost
-  database: seshly_test
-
+  sessions:
+    default:
+      database: seshly_test
+      hosts:
+        - localhost:27017
+        
 # set these environment variables on your prod server
+<% if ENV['MONGOHQ_URL'] %>
+  <% uri = URI.parse(ENV['MONGOHQ_URL']) %>
 production:
-  uri: <%= ENV['MONGOHQ_URL'] %>
-  # slaves:
-  #   - host: slave1.local
-  #     port: 27018
-  #   - host: slave2.local
-  #     port: 27019
+  <<: *defaults
+  sessions:
+    default:
+      <<: *default_session
+      hosts:
+        - <%= uri.host %>:<%= uri.port %>
+<% end %>
