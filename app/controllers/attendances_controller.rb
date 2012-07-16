@@ -34,7 +34,14 @@ class AttendancesController < ApplicationController
   def destroy
     if current_user
       post = Post.find(params[:id])
-      post.attendances.includes(current_user.attendances).destroy
+      attendances = post.attendances.includes(current_user.attendances)
+      
+      if attendances.length > 0
+        attendances.destroy
+      else
+        logger.warn 'AttendancesController WARNING: #{current_user.name} tried to remove attendance on #{post.description} but attendances were nil.'
+      end
+      
 
       respond_to do |format|
         format.html { redirect_to post_path(post), notice: 'You bailing out was successfully recorded!' }
