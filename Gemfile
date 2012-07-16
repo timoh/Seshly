@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+
+gem 'bundler', '> 1.1.0'	
+ruby '1.9.3' if ENV['HEROKU']
 
 gem 'rails'
+
 gem "mongoid"
 gem "mail"
 gem 'thin'
