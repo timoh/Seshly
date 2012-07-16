@@ -267,7 +267,7 @@ DEPENDENCIES
   launchy
   machinist
   mail
-  mongoid (= 3.0.0.rc)
+  mongoid
   mongoid-rspec
   omniauth
   omniauth-twitter
