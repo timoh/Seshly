@@ -34,7 +34,7 @@ class AttendancesController < ApplicationController
   def destroy
     if current_user
       post = Post.find(params[:id])
-      attendances = post.attendances.includes(current_user.attendances)
+      attendances = post.attendances.all_in(:user_id => current_user.id)
       
       if attendances.length > 0
         attendances.destroy

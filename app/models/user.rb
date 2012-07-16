@@ -31,7 +31,7 @@ class User
   end
   
   def already_attending?(post)
-    attendance_for_this_event = self.attendances.includes(post.attendances)
+    attendance_for_this_event = self.attendances.all_in(:post_id => post.id) # USED TO BE: self.attendances.includes(post.attendances)
     
     if attendance_for_this_event.length > 0
       return true 

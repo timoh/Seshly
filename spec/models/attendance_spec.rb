@@ -19,4 +19,10 @@ describe Attendance do
     attendee.attendances.first.post.should == post
     
   end
+  
+  it 'should handle attendances and removing them' do
+    flunk
+  end
+  
+  
 end

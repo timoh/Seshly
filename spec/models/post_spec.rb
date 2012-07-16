@@ -18,4 +18,8 @@ describe Post do
         post.coordinates.should be_false
   end
   
+  it 'should handle attendances and removing them' do
+    flunk
+  end
+  
 end
