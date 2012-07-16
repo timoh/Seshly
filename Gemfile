@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bundler', '> 1.1.0'	
-ruby '1.9.3' if ENV['HEROKU']
+ruby '1.9.3' #if ENV['HEROKU']
 
 gem 'rails'
 
